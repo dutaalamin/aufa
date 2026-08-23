@@ -4,17 +4,18 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function About() {
   const containerRef = useRef(null);
   
-  // Track scroll progress of the 150vh container
+  // Track scroll progress of the 180vh container (smooth middle-ground height)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Slide the black panel off-screen in the first half of the scroll (0% to 55%)
-  const x = useTransform(scrollYProgress, [0, 0.55], ["0%", "-100%"]);
+  // Slide the black panel off-screen across 75% of the scroll (0% to 75%)
+  // This makes the transition feel smooth and majestic, not too fast
+  const x = useTransform(scrollYProgress, [0, 0.75], ["0%", "-100%"]);
   
-  // Fade out left text quickly
-  const opacityLeft = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  // Fade out left text in the first 30% of the scroll
+  const opacityLeft = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
@@ -24,7 +25,7 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[150vh] w-full bg-charcoal-deep">
+    <div ref={containerRef} className="relative h-[180vh] w-full bg-charcoal-deep">
       
       {/* Pinned Sticky Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
