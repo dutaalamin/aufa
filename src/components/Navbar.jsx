@@ -10,7 +10,6 @@ export default function Navbar() {
     { label: 'Home', id: 'home', hasSub: false },
     { label: 'About Us', id: 'about', hasSub: true },
     { label: 'Selected Projects', id: 'projects', hasSub: true },
-    { label: 'Services', id: 'services', hasSub: true },
     { label: 'Contact', id: 'contact', hasSub: false },
   ];
 

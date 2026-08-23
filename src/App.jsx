@@ -5,7 +5,6 @@ import AboutStatement from './components/AboutStatement';
 import About from './components/About';
 import Projects from './components/Projects';
 import ProjectModal from './components/ProjectModal';
-import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -28,7 +27,6 @@ export default function App() {
         <AboutStatement />
         <About />
         <Projects onSelectProject={setSelectedProject} />
-        <Services />
         <Contact />
       </main>
 
