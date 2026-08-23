@@ -47,14 +47,21 @@ export default function Footer() {
         <div className="h-[1px] bg-white/10 w-full" />
 
         {/* Bottom Row: Policies & Copyright */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-1">
-          {/* Bottom Left: Privacy Link (Thick / Semibold) */}
-          <div className="font-sans text-[11px] font-semibold tracking-wide text-slate-400">
-            <a href="#privacy" className="hover:text-white transition-colors">Privacy & Cookies Policy</a>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-1">
+          {/* Bottom Left: Privacy Link (Thick / Semibold - Explicitly White) */}
+          <div className="font-sans text-[13px] font-semibold tracking-wide">
+            <a href="#privacy" className="text-white hover:text-slate-300 transition-colors">
+              Privacy & Cookies Policy
+            </a>
           </div>
           
-          {/* Bottom Right: Copyright stamp */}
-          <div className="font-sans text-[11px] text-slate-500 font-light tracking-wide">
+          {/* Middle: Geographic Location Stamp (Premium Architecture Studio style) */}
+          <div className="font-display text-[10px] tracking-[0.25em] text-slate-400 uppercase">
+            Bali / Indonesia
+          </div>
+          
+          {/* Bottom Right: Copyright stamp (Brightened and enlarged) */}
+          <div className="font-sans text-[13px] text-slate-200 font-light tracking-wide">
             &copy; {new Date().getFullYear()} Aufa. All rights reserved.
           </div>
         </div>
