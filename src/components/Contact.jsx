@@ -47,10 +47,10 @@ export default function Contact() {
               Email Inquiry
             </h4>
             <a 
-              href="mailto:hello@aufastudio.com" 
+              href="mailto:aufa2601@gmail.com" 
               className="font-sans text-sm sm:text-base text-white hover:text-white/80 font-medium transition-colors block"
             >
-              hello@aufastudio.com
+              aufa2601@gmail.com
             </a>
           </div>
 
