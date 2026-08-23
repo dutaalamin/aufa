@@ -30,11 +30,11 @@ export default function About() {
       {/* Pinned Sticky Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
         
-        {/* Full-screen Background Image */}
+        {/* Full-screen Background Image (Bright luxury villa architecture) */}
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-90"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')` 
+            backgroundImage: `url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80')` 
           }}
         />
         
