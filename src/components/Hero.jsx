@@ -70,12 +70,13 @@ export default function Hero() {
         </AnimatePresence>
 
         {/* Right Side: Slider Navigation controls (Right Arrow Only) */}
-        <div className="flex gap-2">
+        <div className="flex items-center">
           <button
             onClick={handleNext}
-            className="p-3 bg-charcoal-deep/60 hover:bg-gold hover:text-charcoal-deep text-slate-300 transition-all duration-300 border border-white/5 hover:border-gold cursor-pointer focus:outline-none"
+            className="text-white hover:text-gold transition-colors cursor-pointer focus:outline-none duration-300 p-1"
+            aria-label="Next Project"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-10 w-10 md:h-12 md:w-12" strokeWidth={2.5} />
           </button>
         </div>
 
