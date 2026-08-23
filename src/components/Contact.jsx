@@ -56,15 +56,10 @@ export default function Contact() {
           <div className="lg:col-span-7 pt-4">
             
             {submitted ? (
-              <div className="h-[350px] flex flex-col items-center justify-center text-center space-y-4">
-                <div className="w-12 h-12 rounded-full border border-white flex items-center justify-center text-white animate-pulse">
-                  <svg className="h-5 w-5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                  </svg>
-                </div>
-                <h3 className="font-display text-xl text-white font-light">Thank You</h3>
-                <p className="font-sans text-xs text-white/60 max-w-sm leading-relaxed">
-                  Your message has been sent successfully. Our studio team will review your project parameters and contact you within 48 business hours.
+              <div className="h-[200px] flex flex-col justify-center text-left space-y-2">
+                <h3 className="font-display text-xl sm:text-2xl font-light text-white">Thank you.</h3>
+                <p className="font-sans text-xs sm:text-sm text-white/50">
+                  Your message has been sent.
                 </p>
               </div>
             ) : (
