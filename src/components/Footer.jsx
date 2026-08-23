@@ -55,9 +55,9 @@ export default function Footer() {
             </a>
           </div>
           
-          {/* Middle: Geographic Location Stamp (Premium Architecture Studio style) */}
+          {/* Middle: Name Stamp */}
           <div className="font-display text-[10px] tracking-[0.25em] text-white uppercase">
-            Bali / Indonesia
+            Aufa Ardelia
           </div>
           
           {/* Bottom Right: Copyright stamp (Brightened and enlarged) */}
