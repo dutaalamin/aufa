@@ -1,40 +1,91 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function About() {
-  return (
-    <section 
-      id="about" 
-      className="relative h-screen w-full flex items-end justify-start overflow-hidden bg-charcoal-deep"
-    >
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-50 scale-105"
-        style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80')` 
-        }}
-      />
-      
-      {/* Dark Overlay Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-charcoal-deep/50 to-charcoal-deep/20 z-10 pointer-events-none" />
-      
-      {/* Fine Grid Lines Overlay */}
-      <div className="absolute inset-0 bg-grid-lines pointer-events-none z-10 opacity-20" />
-      <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none z-10 opacity-30" />
+  const containerRef = useRef(null);
+  
+  // Track scroll progress of the 200vh container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-      {/* Content Container (Bottom-Left Aligned, Full Width padding) */}
-      <div className="relative z-20 w-full px-6 md:px-12 pb-16 md:pb-24 max-w-6xl">
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-light text-white leading-relaxed md:leading-[1.4] tracking-wide"
+  // Transform values based on scroll progress
+  // Slide the black panel completely off-screen to the left (from 0% to -100%)
+  const x = useTransform(scrollYProgress, [0, 0.75], ["0%", "-100%"]);
+  
+  // Fade out left text early in the scroll
+  const opacityLeft = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
+  
+  // Fade in right text later in the scroll
+  const opacityRight = useTransform(scrollYProgress, [0.4, 0.85], [0, 1]);
+  const yRight = useTransform(scrollYProgress, [0.4, 0.85], [30, 0]);
+
+  const scrollToProjects = () => {
+    const el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="relative h-[200vh] w-full bg-charcoal-deep">
+      
+      {/* Pinned Sticky Wrapper */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
+        
+        {/* Full-screen Background Image (Exposed as the black panel slides away) */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0 opacity-60"
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')` 
+          }}
+        />
+        
+        {/* Dark Dimming Overlay on background image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-charcoal-deep/40 to-charcoal-deep/20 z-10 pointer-events-none" />
+        
+        {/* Grid Lines */}
+        <div className="absolute inset-0 bg-grid-lines pointer-events-none z-10 opacity-15" />
+        <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none z-10 opacity-20" />
+
+        {/* Left Side: Sliding Black Panel */}
+        <motion.div 
+          style={{ x }}
+          className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 h-full bg-charcoal-deep z-20 flex items-center justify-start px-8 md:px-16"
         >
-          Aufa creates world-class, sustainable architecture and culturally inspired design solutions tailored to the evolving residential and villa needs of communities.
-        </motion.p>
+          {/* Grid lines inside sliding panel */}
+          <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
+          
+          <motion.div 
+            style={{ opacity: opacityLeft }}
+            className="relative z-10 max-w-md space-y-4"
+          >
+            <p className="font-display text-xl md:text-2xl lg:text-[28px] font-light text-white leading-relaxed">
+              As a leading, bespoke architecture studio, Aufa integrates local environmental knowledge with tropical sustainability and residential design innovation.
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Side: Revealing Text Overlay (Bottom-Right Aligned) */}
+        <motion.div 
+          style={{ opacity: opacityRight, y: yRight }}
+          className="absolute bottom-16 md:bottom-24 right-6 md:right-16 z-30 max-w-xl text-left md:text-right flex flex-col items-start md:items-end gap-6"
+        >
+          <p className="font-display text-base md:text-lg lg:text-[22px] font-light text-white leading-relaxed md:leading-[1.5]">
+            Our team of design experts delivers site-specific solutions and high-performance layouts that create a positive, lasting impact for the families we design for.
+          </p>
+          
+          <button 
+            onClick={scrollToProjects}
+            className="font-display text-xs uppercase tracking-mega text-white hover:text-slate-400 transition-colors flex items-center gap-2 cursor-pointer focus:outline-none"
+          >
+            + Explore Projects
+          </button>
+        </motion.div>
+
       </div>
 
-    </section>
+    </div>
   );
 }
