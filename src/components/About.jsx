@@ -32,14 +32,15 @@ export default function About() {
         
         {/* Full-screen Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center z-0 opacity-60"
+          className="absolute inset-0 bg-cover bg-center z-0 opacity-90"
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')` 
           }}
         />
         
-        {/* Dark Dimming Overlay on background image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-charcoal-deep/40 to-charcoal-deep/20 z-10 pointer-events-none" />
+        {/* Localized Dark Gradients (Protects text, leaving middle fully bright) */}
+        <div className="absolute inset-x-0 bottom-0 h-[45vh] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-[25vh] bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
         
         {/* Grid Lines */}
         <div className="absolute inset-0 bg-grid-lines pointer-events-none z-10 opacity-15" />

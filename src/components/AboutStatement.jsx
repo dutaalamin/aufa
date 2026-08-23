@@ -9,14 +9,15 @@ export default function AboutStatement() {
     >
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-50 scale-105"
+        className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-105"
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80')` 
         }}
       />
       
-      {/* Dark Overlay Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-charcoal-deep/50 to-charcoal-deep/20 z-10 pointer-events-none" />
+      {/* Localized Dark Gradients (Protects text layout, leaving central architecture bright) */}
+      <div className="absolute inset-x-0 bottom-0 h-[45vh] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[25vh] bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
       
       {/* Fine Grid Lines Overlay */}
       <div className="absolute inset-0 bg-grid-lines pointer-events-none z-10 opacity-20" />

@@ -58,7 +58,7 @@ export default function ProjectModal({ project, onClose }) {
           {/* Close button for Mobile (Floating Top Right) */}
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 z-40 p-3 bg-charcoal-deep/80 backdrop-blur-md text-white hover:text-gold border border-white/10 rounded-none focus:outline-none"
+            className="absolute top-4 right-4 z-40 p-3 bg-charcoal-deep/80 backdrop-blur-md text-white hover:text-white border border-white/10 rounded-none focus:outline-none"
           >
             <X className="h-5 w-5" />
           </button>
@@ -74,21 +74,21 @@ export default function ProjectModal({ project, onClose }) {
                 className="w-full h-full object-cover transition-all duration-700" 
               />
               
-              {/* Image Gradient Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-transparent to-transparent opacity-60 pointer-events-none" />
+              {/* Image Gradient Dark Overlay (Brightened to 20% opacity) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-transparent to-transparent opacity-20 pointer-events-none" />
             </div>
 
             {/* Slider Navigation Controls */}
             <button
               onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-charcoal-deep/70 backdrop-blur-sm border border-white/10 text-white hover:text-gold hover:border-gold transition-all duration-300 focus:outline-none"
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-charcoal-deep/70 backdrop-blur-sm border border-white/10 text-white hover:text-white hover:border-white transition-all duration-300 focus:outline-none"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             
             <button
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-charcoal-deep/70 backdrop-blur-sm border border-white/10 text-white hover:text-gold hover:border-gold transition-all duration-300 focus:outline-none"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-charcoal-deep/70 backdrop-blur-sm border border-white/10 text-white hover:text-white hover:border-white transition-all duration-300 focus:outline-none"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -101,7 +101,7 @@ export default function ProjectModal({ project, onClose }) {
                   onClick={() => setActiveImageIndex(idx)}
                   className={`w-12 h-9 flex-shrink-0 border transition-all duration-300 ${
                     idx === activeImageIndex 
-                      ? 'border-gold brightness-100 scale-105' 
+                      ? 'border-white brightness-100 scale-105' 
                       : 'border-white/10 brightness-50 hover:brightness-90'
                   }`}
                 >
@@ -123,7 +123,7 @@ export default function ProjectModal({ project, onClose }) {
               {/* Header Title */}
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
-                  <span className="font-display text-[9px] uppercase tracking-mega text-gold font-light border border-gold/20 px-2 py-0.5">
+                  <span className="font-display text-[9px] uppercase tracking-mega text-white font-light border border-white/20 px-2 py-0.5">
                     {project.category}
                   </span>
                 </div>
@@ -138,7 +138,7 @@ export default function ProjectModal({ project, onClose }) {
               {/* Technical Facts Grid */}
               <div className="grid grid-cols-2 gap-4 py-4 border-y border-white/5 text-xs font-sans">
                 <div className="flex items-center gap-2 text-slate-400">
-                  <MapPin className="h-3.5 w-3.5 text-gold/60" />
+                  <MapPin className="h-3.5 w-3.5 text-white/60" />
                   <div>
                     <span className="text-[10px] uppercase text-slate-500 block leading-none font-display">Location</span>
                     <span className="text-slate-200 mt-1 block">{project.location}</span>
@@ -146,7 +146,7 @@ export default function ProjectModal({ project, onClose }) {
                 </div>
                 
                 <div className="flex items-center gap-2 text-slate-400">
-                  <Calendar className="h-3.5 w-3.5 text-gold/60" />
+                  <Calendar className="h-3.5 w-3.5 text-white/60" />
                   <div>
                     <span className="text-[10px] uppercase text-slate-500 block leading-none font-display">Year</span>
                     <span className="text-slate-200 mt-1 block">{project.year}</span>
@@ -154,7 +154,7 @@ export default function ProjectModal({ project, onClose }) {
                 </div>
 
                 <div className="flex items-center gap-2 text-slate-400">
-                  <Maximize className="h-3.5 w-3.5 text-gold/60" />
+                  <Maximize className="h-3.5 w-3.5 text-white/60" />
                   <div>
                     <span className="text-[10px] uppercase text-slate-500 block leading-none font-display">Area</span>
                     <span className="text-slate-200 mt-1 block">{project.area}</span>
@@ -162,7 +162,7 @@ export default function ProjectModal({ project, onClose }) {
                 </div>
 
                 <div className="flex items-center gap-2 text-slate-400">
-                  <Layers className="h-3.5 w-3.5 text-gold/60" />
+                  <Layers className="h-3.5 w-3.5 text-white/60" />
                   <div>
                     <span className="text-[10px] uppercase text-slate-500 block leading-none font-display">Scope</span>
                     <span className="text-slate-200 mt-1 block">{project.scope}</span>
@@ -172,7 +172,7 @@ export default function ProjectModal({ project, onClose }) {
 
               {/* Concept Text */}
               <div className="space-y-3">
-                <h3 className="font-display text-xs uppercase tracking-widest text-gold font-light">
+                <h3 className="font-display text-xs uppercase tracking-widest text-white font-light">
                   Design Concept
                 </h3>
                 <p className="font-sans text-xs md:text-sm text-slate-300 font-light leading-relaxed">
@@ -182,7 +182,7 @@ export default function ProjectModal({ project, onClose }) {
 
               {/* Detailed Technical Specifications Table */}
               <div className="space-y-3">
-                <h3 className="font-display text-xs uppercase tracking-widest text-gold font-light">
+                <h3 className="font-display text-xs uppercase tracking-widest text-white font-light">
                   Project Specifications
                 </h3>
                 <div className="border border-white/5 bg-charcoal-dark/20 p-4 space-y-3 font-sans text-xs">
@@ -204,7 +204,7 @@ export default function ProjectModal({ project, onClose }) {
             <div className="pt-8 border-t border-white/5 flex justify-end">
               <button 
                 onClick={onClose}
-                className="px-6 py-2.5 border border-white/10 hover:border-gold hover:text-gold transition-colors font-display text-[10px] uppercase tracking-widest text-slate-400 focus:outline-none"
+                className="px-6 py-2.5 border border-white/10 hover:border-white hover:text-white transition-colors font-display text-[10px] uppercase tracking-widest text-slate-400 focus:outline-none"
               >
                 Close Project
               </button>

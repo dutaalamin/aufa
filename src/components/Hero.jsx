@@ -26,7 +26,7 @@ export default function Hero() {
         <motion.div
           key={activeIndex}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.35 }}
+          animate={{ opacity: 0.95 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0 z-0"
@@ -43,8 +43,9 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Dark Overlay Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-charcoal-deep/45 to-charcoal-deep/20 z-10 pointer-events-none" />
+      {/* Localized Dark Gradients (Protects top header and bottom text, leaving middle fully bright) */}
+      <div className="absolute inset-x-0 bottom-0 h-[45vh] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[25vh] bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
       
       {/* Grid Lines */}
       <div className="absolute inset-0 bg-grid-lines pointer-events-none z-10 opacity-30" />

@@ -112,7 +112,7 @@ export default function Projects({ onSelectProject }) {
   return (
     <section 
       id="projects" 
-      className="relative py-24 md:py-32 bg-charcoal-dark overflow-hidden border-b border-white/5"
+      className="relative py-24 md:py-32 bg-charcoal-deep overflow-hidden border-b border-white/5"
     >
       <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-40" />
@@ -122,14 +122,14 @@ export default function Projects({ onSelectProject }) {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="space-y-4">
-            <span className="font-display text-xs uppercase tracking-mega text-gold font-light block">
+            <span className="font-display text-xs uppercase tracking-mega text-slate-400 font-light block">
               PORTFOLIO
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-light text-white tracking-tight leading-tight">
               Selected Residential <br />
               Villa Works
             </h2>
-            <div className="w-16 h-[1px] bg-gold" />
+            <div className="w-16 h-[1px] bg-white" />
           </div>
 
           {/* Filter Buttons */}
@@ -140,7 +140,7 @@ export default function Projects({ onSelectProject }) {
                 onClick={() => setFilter(cat)}
                 className={`font-display text-xxs uppercase tracking-widest px-4 py-2 border transition-all duration-300 ${
                   filter === cat 
-                    ? 'border-gold text-gold bg-gold/5' 
+                    ? 'border-white text-white bg-white/5' 
                     : 'border-transparent text-slate-400 hover:text-white'
                 }`}
               >
@@ -165,18 +165,19 @@ export default function Projects({ onSelectProject }) {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 key={project.id}
                 onClick={() => onSelectProject(project)}
-                className="group cursor-pointer relative bg-charcoal border border-white/5 overflow-hidden flex flex-col transition-all duration-700 hover:border-gold/30"
+                className="group cursor-pointer relative bg-charcoal border border-white/5 overflow-hidden flex flex-col transition-all duration-700 hover:border-white/30"
               >
                 {/* Image Wrap */}
                 <div className="aspect-[4/3] w-full overflow-hidden relative">
-                  <div className="absolute inset-0 bg-charcoal-deep/30 group-hover:bg-charcoal-deep/10 transition-colors duration-500 z-10" />
+                  {/* Minimized Overlay to make background images extremely bright and crisp */}
+                  <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <img 
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform duration-[1200ms] cubic-bezier(0.16, 1, 0.3, 1) group-hover:scale-105" 
                   />
                   {/* Category Stamp */}
-                  <span className="absolute top-4 left-4 z-20 bg-charcoal-deep/80 backdrop-blur-md px-3 py-1 font-display text-[9px] uppercase tracking-widest text-gold border border-white/10">
+                  <span className="absolute top-4 left-4 z-20 bg-charcoal-deep/85 backdrop-blur-md px-3 py-1 font-display text-[9px] uppercase tracking-widest text-white border border-white/10">
                     {project.category}
                   </span>
                 </div>
@@ -185,7 +186,7 @@ export default function Projects({ onSelectProject }) {
                 <div className="p-6 md:p-8 flex-1 flex flex-col justify-between space-y-4 relative bg-charcoal-deep/20">
                   <div className="space-y-2">
                     <div className="flex justify-between items-baseline">
-                      <h3 className="font-display text-xl md:text-2xl font-light text-white group-hover:text-gold transition-colors duration-300">
+                      <h3 className="font-display text-xl md:text-2xl font-light text-white group-hover:text-white/80 transition-colors duration-300">
                         {project.title}
                       </h3>
                       <span className="font-display text-xxs uppercase tracking-widest text-slate-500">
@@ -204,7 +205,7 @@ export default function Projects({ onSelectProject }) {
                 </div>
 
                 {/* Decorative border overlays */}
-                <div className="absolute inset-x-0 bottom-0 h-[1.5px] bg-gold scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-100 group-hover:origin-left z-20" />
+                <div className="absolute inset-x-0 bottom-0 h-[1.5px] bg-white scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-100 group-hover:origin-left z-20" />
               </motion.div>
             ))}
           </AnimatePresence>
