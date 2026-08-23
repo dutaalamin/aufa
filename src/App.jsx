@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import AboutStatement from './components/AboutStatement';
 import About from './components/About';
 import Projects from './components/Projects';
 import ProjectModal from './components/ProjectModal';
@@ -14,7 +15,6 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-charcoal text-slate-100 selection:bg-gold selection:text-charcoal-deep overflow-x-hidden font-sans">
       
-
       
       {/* Dynamic Background Fine Architectural Grid Lines */}
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20 z-0" />
@@ -25,6 +25,7 @@ export default function App() {
       {/* Main Sections */}
       <main className="relative z-10">
         <Hero />
+        <AboutStatement />
         <About />
         <Projects onSelectProject={setSelectedProject} />
         <Services />
