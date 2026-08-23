@@ -65,7 +65,12 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-6">
+                <p className="font-sans text-xs sm:text-sm text-white/50 font-light leading-relaxed">
+                  Submit your project details below to initiate a design collaboration.
+                </p>
+                
+                <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Name field */}
                   <div className="space-y-1">
@@ -142,7 +147,8 @@ export default function Contact() {
                   </span>
                 </button>
               </form>
-            )}
+            </div>
+          )}
           </div>
 
           {/* Right Column: Empty space for layout balance */}
