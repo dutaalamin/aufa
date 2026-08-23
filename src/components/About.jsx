@@ -4,22 +4,21 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function About() {
   const containerRef = useRef(null);
   
-  // Track scroll progress of the 300vh container
+  // Track scroll progress of the 150vh container (snappier transition)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Slide the black panel completely off-screen to the left (from 0% to -100%)
-  // Completed at 70% scroll progress to create a buffer of full exposure before unpinning
-  const x = useTransform(scrollYProgress, [0, 0.7], ["0%", "-100%"]);
+  // Slide the black panel off-screen in the first half of the scroll (0% to 55%)
+  const x = useTransform(scrollYProgress, [0, 0.55], ["0%", "-100%"]);
   
-  // Fade out left text early in the scroll
-  const opacityLeft = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  // Fade out left text quickly
+  const opacityLeft = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
   
-  // Fade in right text later in the scroll
-  const opacityRight = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
-  const yRight = useTransform(scrollYProgress, [0.4, 0.8], [30, 0]);
+  // Fade in right text in the middle of the scroll and keep it visible (clamps to 1)
+  const opacityRight = useTransform(scrollYProgress, [0.35, 0.65], [0, 1]);
+  const yRight = useTransform(scrollYProgress, [0.35, 0.65], [20, 0]);
 
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
@@ -29,12 +28,12 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] w-full bg-charcoal-deep">
+    <div ref={containerRef} className="relative h-[150vh] w-full bg-charcoal-deep">
       
       {/* Pinned Sticky Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
         
-        {/* Full-screen Background Image (Exposed as the black panel slides away) */}
+        {/* Full-screen Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 opacity-60"
           style={{ 
