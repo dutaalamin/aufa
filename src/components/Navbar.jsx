@@ -50,7 +50,7 @@ export default function Navbar() {
           ? 'py-4 bg-charcoal-deep/90 backdrop-blur-md border-b border-white/5' 
           : 'py-6 bg-transparent border-b border-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="w-full px-6 md:px-12 flex justify-between items-center">
           {/* Logo - Top Left */}
           <button 
             onClick={() => scrollTo('home')} 

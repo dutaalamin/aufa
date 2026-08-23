@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { projectsData } from './Projects';
 
 export default function Hero() {
@@ -51,7 +51,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none z-10 opacity-40" />
 
       {/* Bottom Panel Overlay */}
-      <div className="absolute inset-x-0 bottom-16 md:bottom-24 z-20 max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-row items-end justify-between">
+      <div className="absolute inset-x-0 bottom-16 md:bottom-24 z-20 w-full px-6 md:px-12 flex flex-row items-end justify-between">
         
         {/* Left Side: Project Title */}
         <AnimatePresence mode="wait">
@@ -63,46 +63,22 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-start gap-1"
           >
-            <span className="font-display text-[10px] tracking-mega text-gold uppercase font-light">
-              FEATURED PROJECT
-            </span>
             <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none flex items-center gap-2">
               <span className="text-gold font-light">+</span> {currentProject.title}
             </h1>
           </motion.div>
         </AnimatePresence>
 
-        {/* Right Side: Slider Navigation controls */}
-        <div className="flex items-center gap-6">
-          {/* Pagination Counter */}
-          <div className="font-display text-xs tracking-mega text-slate-400 font-light select-none">
-            <span className="text-white">0{activeIndex + 1}</span> / 0{projectsData.length}
-          </div>
-
-          {/* Nav buttons */}
-          <div className="flex gap-2">
-            <button
-              onClick={handlePrev}
-              className="p-3 bg-charcoal-deep/60 hover:bg-gold hover:text-charcoal-deep text-slate-300 transition-all duration-300 border border-white/5 hover:border-gold cursor-pointer focus:outline-none"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="p-3 bg-charcoal-deep/60 hover:bg-gold hover:text-charcoal-deep text-slate-300 transition-all duration-300 border border-white/5 hover:border-gold cursor-pointer focus:outline-none"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
+        {/* Right Side: Slider Navigation controls (Right Arrow Only) */}
+        <div className="flex gap-2">
+          <button
+            onClick={handleNext}
+            className="p-3 bg-charcoal-deep/60 hover:bg-gold hover:text-charcoal-deep text-slate-300 transition-all duration-300 border border-white/5 hover:border-gold cursor-pointer focus:outline-none"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
         </div>
 
-      </div>
-
-      {/* Subtitle brand statement on top-right */}
-      <div className="absolute top-28 right-6 md:right-12 z-20 max-w-[240px] text-right pointer-events-none hidden md:block">
-        <p className="font-sans text-[9px] text-slate-400 font-light tracking-mega leading-relaxed uppercase">
-          Crafting bespoke luxury villas that balance light, raw concrete, and landscape integration.
-        </p>
       </div>
 
     </section>
