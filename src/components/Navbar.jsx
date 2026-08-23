@@ -7,7 +7,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
-    { label: 'Home', id: 'home', hasSub: false },
     { label: 'About Us', id: 'about', hasSub: true },
     { label: 'Featured Projects', id: 'projects', hasSub: true },
     { label: 'Experiences', id: 'experiences', hasSub: true },
