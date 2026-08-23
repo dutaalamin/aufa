@@ -248,7 +248,7 @@ export default function Projects({ onSelectProject }) {
   return (
     <section 
       id="projects" 
-      className="relative py-24 md:py-32 bg-charcoal-deep overflow-hidden"
+      className="relative pt-24 md:pt-32 pb-12 md:pb-16 bg-charcoal-deep overflow-hidden"
     >
       {/* Background Architectural Blueprint Lines */}
       <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />

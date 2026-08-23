@@ -22,7 +22,7 @@ export default function Contact() {
   return (
     <section 
       id="contact" 
-      className="relative py-24 md:py-32 bg-charcoal-deep overflow-hidden"
+      className="relative pt-12 md:pt-16 pb-24 md:pb-32 bg-charcoal-deep overflow-hidden"
     >
       {/* Background blueprint grids */}
       <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
@@ -42,7 +42,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
           {/* Left Column: Email Inquiry */}
-          <div className="lg:col-span-4 space-y-2">
+          <div className="lg:col-span-3 space-y-2">
             <h4 className="font-display text-[9px] text-white/50 uppercase tracking-widest">
               Email Inquiry
             </h4>
@@ -55,7 +55,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Contact form */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-6">
             
             {submitted ? (
               <div className="h-[200px] flex flex-col justify-center text-left space-y-2">
@@ -143,8 +143,10 @@ export default function Contact() {
                 </button>
               </form>
             )}
-
           </div>
+
+          {/* Right Column: Empty space for layout balance */}
+          <div className="hidden lg:block lg:col-span-3" />
 
         </div>
 
