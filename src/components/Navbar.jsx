@@ -62,11 +62,8 @@ export default function Navbar() {
           {/* Hamburger Menu Toggle - Top Right */}
           <button
             onClick={() => setIsOpen(true)}
-            className="p-2 text-white hover:text-slate-400 transition-colors focus:outline-none flex items-center justify-center gap-3 group cursor-pointer"
+            className="p-2 text-white hover:text-slate-400 transition-colors focus:outline-none flex items-center justify-center group cursor-pointer"
           >
-            <span className="font-display text-[9px] tracking-mega uppercase text-slate-400 group-hover:text-white transition-colors hidden sm:inline">
-              Menu
-            </span>
             <div className="flex flex-col gap-1.5 w-6 items-end">
               <span className="h-[1px] bg-white w-6" />
               <span className="h-[1px] bg-white w-4 group-hover:w-6 transition-all duration-300" />
