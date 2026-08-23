@@ -98,7 +98,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="relative w-full sm:w-[460px] md:w-[500px] h-full bg-white text-slate-900 shadow-2xl flex flex-col justify-between p-8 md:p-12 z-10"
+              className="relative w-full sm:w-[420px] md:w-[40%] h-full bg-white text-slate-900 shadow-2xl flex flex-col justify-between p-8 md:p-12 z-10"
             >
               {/* Drawer Header: Close & Search */}
               <div className="flex items-center justify-end gap-6 text-slate-500">
