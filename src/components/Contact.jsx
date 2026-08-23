@@ -85,37 +85,7 @@ export default function Contact() {
               </div>
 
             </div>
-
-            {/* Social handles */}
-            <div className="space-y-4 pt-4">
-              <h4 className="font-display text-xs text-white uppercase tracking-widest">Connect</h4>
-              <div className="flex items-center gap-3">
-                <a 
-                  href="https://behance.net" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="p-3 bg-charcoal-deep border border-white/5 hover:border-white hover:text-white text-slate-400 transition-colors"
-                >
-                  <span className="font-display text-xs font-medium tracking-wider">Behance</span>
-                </a>
-                <a 
-                  href="https://instagram.com" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="p-3 bg-charcoal-deep border border-white/5 hover:border-white hover:text-white text-slate-400 transition-colors"
-                >
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="p-3 bg-charcoal-deep border border-white/5 hover:border-white hover:text-white text-slate-400 transition-colors"
-                >
-                  <Linkedin className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
+            
           </div>
 
           {/* Right Column: Contact form */}
