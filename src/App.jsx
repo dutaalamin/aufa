@@ -13,7 +13,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div className="relative min-h-screen bg-charcoal text-slate-100 selection:bg-gold selection:text-charcoal-deep overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-charcoal text-slate-100 selection:bg-gold selection:text-charcoal-deep overflow-x-clip font-sans">
       
       
       {/* Dynamic Background Fine Architectural Grid Lines */}

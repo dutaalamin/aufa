@@ -4,22 +4,22 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function About() {
   const containerRef = useRef(null);
   
-  // Track scroll progress of the 200vh container
+  // Track scroll progress of the 300vh container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Transform values based on scroll progress
   // Slide the black panel completely off-screen to the left (from 0% to -100%)
-  const x = useTransform(scrollYProgress, [0, 0.75], ["0%", "-100%"]);
+  // Completed at 70% scroll progress to create a buffer of full exposure before unpinning
+  const x = useTransform(scrollYProgress, [0, 0.7], ["0%", "-100%"]);
   
   // Fade out left text early in the scroll
-  const opacityLeft = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
+  const opacityLeft = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   
   // Fade in right text later in the scroll
-  const opacityRight = useTransform(scrollYProgress, [0.4, 0.85], [0, 1]);
-  const yRight = useTransform(scrollYProgress, [0.4, 0.85], [30, 0]);
+  const opacityRight = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
+  const yRight = useTransform(scrollYProgress, [0.4, 0.8], [30, 0]);
 
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
@@ -29,7 +29,7 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[200vh] w-full bg-charcoal-deep">
+    <div ref={containerRef} className="relative h-[300vh] w-full bg-charcoal-deep">
       
       {/* Pinned Sticky Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
