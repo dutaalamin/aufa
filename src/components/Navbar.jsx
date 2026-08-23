@@ -116,7 +116,7 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Navigation Links */}
-              <div className="flex flex-col items-start space-y-6 my-auto pl-4 select-none">
+              <div className="flex flex-col items-start space-y-6 mt-16 md:mt-24 mb-auto pl-4 select-none">
                 {navItems.map((item, idx) => (
                   <button
                     key={item.id}
