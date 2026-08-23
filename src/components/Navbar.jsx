@@ -59,7 +59,9 @@ export default function Navbar() {
           {/* Logo - Top Left */}
           <button 
             onClick={() => scrollTo('home')} 
-            className="text-left font-display font-light text-xl tracking-mega text-white hover:text-slate-400 transition-colors focus:outline-none cursor-pointer"
+            className={`text-left font-display font-light tracking-mega text-white hover:text-white/80 transition-all duration-500 focus:outline-none cursor-pointer ${
+              isScrolled ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
+            }`}
           >
             A U F A
           </button>
