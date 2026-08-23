@@ -260,7 +260,7 @@ export default function Projects({ onSelectProject }) {
         <div className="space-y-8">
           
           {/* Header Row */}
-          <div className="flex items-end justify-between border-b border-white/5 pb-4">
+          <div className="flex items-end justify-between pb-4">
             <div className="flex items-baseline gap-4">
               <h2 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
                 Featured Projects
@@ -338,7 +338,7 @@ export default function Projects({ onSelectProject }) {
         <div id="all-projects-anchor" className="space-y-12 pt-8">
           
           {/* Header Row */}
-          <div className="border-b border-white/5 pb-4">
+          <div className="pb-4">
             <h2 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
               All Projects
             </h2>
@@ -382,7 +382,7 @@ export default function Projects({ onSelectProject }) {
         <div className="space-y-8 pt-8">
           
           {/* Header Row */}
-          <div className="border-b border-white/5 pb-4">
+          <div className="pb-4">
             <h2 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
               Experiences
             </h2>

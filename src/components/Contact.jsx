@@ -32,7 +32,7 @@ export default function Contact() {
       <div className="w-full px-6 md:px-12 relative z-10 space-y-12">
         
         {/* Section Header (Unified style aligning with Experiences) */}
-        <div className="border-b border-white/5 pb-4">
+        <div className="pb-4">
           <h2 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
             Contact
           </h2>
