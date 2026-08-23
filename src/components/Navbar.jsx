@@ -99,12 +99,8 @@ export default function Navbar() {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="relative w-full sm:w-[460px] md:w-[500px] h-full bg-white text-slate-900 shadow-2xl flex flex-col justify-between p-8 md:p-12 z-10"
             >
-              {/* Drawer Header: Close, Language & Search */}
+              {/* Drawer Header: Close & Search */}
               <div className="flex items-center justify-end gap-6 text-slate-500">
-                {/* Language Tag */}
-                <button className="text-[10px] tracking-widest font-display hover:text-black transition-colors focus:outline-none cursor-pointer">
-                  EN
-                </button>
                 {/* Search Icon */}
                 <button className="hover:text-black transition-colors focus:outline-none cursor-pointer">
                   <Search className="h-4 w-4" />
@@ -140,21 +136,21 @@ export default function Navbar() {
               <div className="space-y-6 pt-6">
                 
                 {/* Social Media Row */}
-                <div className="flex items-center gap-4 text-slate-400 pl-4">
+                <div className="flex items-center gap-4 text-slate-700 pl-4">
                   <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
-                    <Instagram className="h-4 w-4" />
+                    <Instagram className="h-[18px] w-[18px]" strokeWidth={2.5} />
                   </a>
                   <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
-                    <Linkedin className="h-4 w-4" />
+                    <Linkedin className="h-[18px] w-[18px]" strokeWidth={2.5} />
                   </a>
                   <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
-                    <Facebook className="h-4 w-4" />
+                    <Facebook className="h-[18px] w-[18px]" strokeWidth={2.5} />
                   </a>
                   <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
-                    <Twitter className="h-4 w-4" />
+                    <Twitter className="h-[18px] w-[18px]" strokeWidth={2.5} />
                   </a>
                   <a href="mailto:hello@aufastudio.com" className="hover:text-black transition-colors">
-                    <Mail className="h-4 w-4" />
+                    <Mail className="h-[18px] w-[18px]" strokeWidth={2.5} />
                   </a>
                 </div>
 
@@ -162,10 +158,8 @@ export default function Navbar() {
                 <div className="h-[1px] bg-slate-100 w-full" />
 
                 {/* Policy Links */}
-                <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] uppercase tracking-widest text-slate-400 font-light pl-4">
+                <div className="text-[9px] uppercase tracking-widest text-slate-400 font-light pl-4">
                   <a href="#privacy" className="hover:text-black transition-colors">Privacy & Cookies Policy</a>
-                  <a href="#objectives" className="hover:text-black transition-colors">Objectives</a>
-                  <a href="#esg" className="hover:text-black transition-colors">ESG</a>
                 </div>
 
               </div>
