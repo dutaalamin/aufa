@@ -379,7 +379,7 @@ export default function Projects({ onSelectProject }) {
         </div>
 
         {/* ROW 3: EXPERIENCES (Aedas News-style accordion) */}
-        <div className="space-y-8 pt-8">
+        <div id="experiences" className="space-y-8 pt-8">
           
           {/* Header Row */}
           <div className="pb-4">
