@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-light: #e5c19d;
-  --color-gold: #c8a27c;
-  --color-gold-dark: #a8845c;
-  --color-gold-bright: #d4af37;
+  /* Remapped gold tokens to white/grey for pure monochrome dark & white theme */
+  --color-gold-light: #e2e8f0;
+  --color-gold: #ffffff;
+  --color-gold-dark: #8a99ad;
+  --color-gold-bright: #ffffff;
   
   --color-charcoal-light: #1c1c1c;
   --color-charcoal: #121212;
@@ -25,19 +26,19 @@
 @utility bg-grid-lines {
   background-size: 80px 80px;
   background-image: 
-    linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
 
 @utility bg-grid-lines-fine {
   background-size: 20px 20px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
 }
 
 @utility text-glow {
-  text-shadow: 0 0 10px rgba(200, 162, 124, 0.2);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
 }
 
 @utility glassmorphism {
@@ -75,7 +76,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c8a27c;
+  background: #ffffff;
 }
 
 /* Smooth scrolling override */
@@ -85,6 +86,6 @@ html {
 
 /* Highlight styling */
 ::selection {
-  background-color: #c8a27c;
+  background-color: #ffffff;
   color: #0a0a0a;
 }
