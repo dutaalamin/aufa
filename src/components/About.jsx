@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function About() {
   const containerRef = useRef(null);
   
-  // Track scroll progress of the 150vh container (snappier transition)
+  // Track scroll progress of the 150vh container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -15,10 +15,6 @@ export default function About() {
   
   // Fade out left text quickly
   const opacityLeft = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  
-  // Fade in right text in the middle of the scroll and keep it visible (clamps to 1)
-  const opacityRight = useTransform(scrollYProgress, [0.35, 0.65], [0, 1]);
-  const yRight = useTransform(scrollYProgress, [0.35, 0.65], [20, 0]);
 
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
@@ -66,11 +62,8 @@ export default function About() {
           </motion.div>
         </motion.div>
 
-        {/* Right Side: Revealing Text Overlay (Bottom-Right Aligned) */}
-        <motion.div 
-          style={{ opacity: opacityRight, y: yRight }}
-          className="absolute bottom-16 md:bottom-24 right-6 md:right-16 z-30 max-w-xl text-left md:text-right flex flex-col items-start md:items-end gap-6"
-        >
+        {/* Right Side: Static Text Overlay (Bottom-Right Aligned - Always Visible) */}
+        <div className="absolute bottom-16 md:bottom-24 right-6 md:right-16 z-30 max-w-xl text-left md:text-right flex flex-col items-start md:items-end gap-6">
           <p className="font-display text-base md:text-lg lg:text-[22px] font-light text-white leading-relaxed md:leading-[1.5]">
             Our team of design experts delivers site-specific solutions and high-performance layouts that create a positive, lasting impact for the families we design for.
           </p>
@@ -81,7 +74,7 @@ export default function About() {
           >
             + Explore Projects
           </button>
-        </motion.div>
+        </div>
 
       </div>
 
