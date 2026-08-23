@@ -28,32 +28,34 @@ export default function Contact() {
       <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-40" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      {/* Main Container - Full width matching Projects/Experiences */}
+      <div className="w-full px-6 md:px-12 relative z-10 space-y-12">
         
+        {/* Section Header (Unified style aligning with Experiences) */}
+        <div className="border-b border-white/5 pb-4">
+          <h2 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
+            Contact
+          </h2>
+        </div>
+        
+        {/* Content Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          {/* Left Column: Contact details */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-2">
-              <h2 className="font-display text-2xl sm:text-3xl font-light text-white uppercase tracking-wider">
-                Contact
-              </h2>
-            </div>
-
-            {/* Studio Info List (Simple text style) */}
-            <div className="w-full">
-              <a 
-                href="mailto:hello@aufastudio.com" 
-                className="font-sans text-sm sm:text-base text-white hover:text-white/80 font-medium transition-colors block"
-              >
-                hello@aufastudio.com
-              </a>
-            </div>
-            
+          {/* Left Column: Email Inquiry */}
+          <div className="lg:col-span-4 space-y-2">
+            <h4 className="font-display text-[9px] text-white/50 uppercase tracking-widest">
+              Email Inquiry
+            </h4>
+            <a 
+              href="mailto:hello@aufastudio.com" 
+              className="font-sans text-sm sm:text-base text-white hover:text-white/80 font-medium transition-colors block"
+            >
+              hello@aufastudio.com
+            </a>
           </div>
 
           {/* Right Column: Contact form */}
-          <div className="lg:col-span-7 pt-4">
+          <div className="lg:col-span-8">
             
             {submitted ? (
               <div className="h-[200px] flex flex-col justify-center text-left space-y-2">
