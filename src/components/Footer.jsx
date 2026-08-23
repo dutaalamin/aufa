@@ -56,12 +56,12 @@ export default function Footer() {
           </div>
           
           {/* Middle: Geographic Location Stamp (Premium Architecture Studio style) */}
-          <div className="font-display text-[10px] tracking-[0.25em] text-white/50 uppercase">
+          <div className="font-display text-[10px] tracking-[0.25em] text-white uppercase">
             Bali / Indonesia
           </div>
           
           {/* Bottom Right: Copyright stamp (Brightened and enlarged) */}
-          <div className="font-sans text-[13px] text-white/80 font-light tracking-wide">
+          <div className="font-sans text-[13px] text-white font-light tracking-wide">
             &copy; {new Date().getFullYear()} Aufa. All rights reserved.
           </div>
         </div>
