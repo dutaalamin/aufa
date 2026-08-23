@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -177,8 +177,50 @@ export const projectsData = [
   }
 ];
 
+export const experiencesData = [
+  {
+    id: 1,
+    company: 'PT. Summarecon Agung, Tbk',
+    location: 'Serpong',
+    role: 'Fit Out Coordinator',
+    period: 'Oct 2025 - Present',
+    bullets: [
+      'Coordinated 10+ cross functional teams (tenants, contractors, and internal departments) to ensure smooth and timely tenant store openings, minimizing delays and operational miscommunication',
+      'Developed and implemented a progress tracker system to monitor tenant fit-out and opening readiness, achieving a 96% on-time opening rate through proactive monitoring',
+      'Designed modular partition systems that is reusable and easy to install, improving efficiency in space preparation while reducing material waste and installation time',
+      'Supervised tenant fit-out processes, from design approval to post-opening evaluation, ensuring compliance with mall standards and maintaining consistent quality across all units.',
+      'Conducted regular site inspections and checklist evaluation, identifying and resolving defects promptly to ensure each unit met operational and safety standards before and after opening'
+    ]
+  },
+  {
+    id: 2,
+    company: 'LICHT Studio',
+    location: 'Jakarta',
+    role: 'Internship Program',
+    period: 'Dec 2023 - Feb 2024',
+    bullets: [
+      'Developed and managed site visit evaluation reports in Word and Excel, identifying critical issues and proposing solutions that reduced project delays by 15% and improved decision making efficiency for the team',
+      'Created precise construction drawings with AutoCAD, applying dynamic blocks to streamline workflow, reducing drafting time, and improving design accuracy',
+      'Designed a seamless 500x600 mm floor pattern with no visible repetitions, leading to optimizing material usage and reducing in waste approximately 12%'
+    ]
+  },
+  {
+    id: 3,
+    company: 'Wonolelo Village Masterplan Development Research',
+    location: 'Yogyakarta',
+    role: 'Project Assistant',
+    period: 'May 2023 - Dec 2023',
+    bullets: [
+      'Identified potential development zones on regional map, utilizing AutoCAD for 2D analysis and SketchUp for 3D visualization',
+      'Analyzed and organized survey data from 120 participants using Excel, enabling data driven decisions on tourism area development in Wonolelo, Yogyakarta',
+      'Designed the pre-design framework of Wonolelo Village masterplan, integrating principles of sustainability and tourism development'
+    ]
+  }
+];
+
 export default function Projects({ onSelectProject }) {
   const sliderRef = useRef(null);
+  const [activeExpIndex, setActiveExpIndex] = useState(null);
 
   const scrollLeft = () => {
     if (sliderRef.current) {
@@ -332,6 +374,74 @@ export default function Projects({ onSelectProject }) {
                 </div>
               </div>
             ))}
+          </div>
+
+        </div>
+
+        {/* ROW 3: EXPERIENCES (Aedas News-style accordion) */}
+        <div className="space-y-8 pt-8">
+          
+          {/* Header Row */}
+          <div className="border-b border-white/5 pb-4">
+            <h2 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
+              Experiences
+            </h2>
+          </div>
+
+          {/* List Layout */}
+          <div className="w-full flex flex-col">
+            {experiencesData.map((exp, index) => {
+              const isOpen = activeExpIndex === index;
+              return (
+                <div 
+                  key={exp.id}
+                  className={`border-t border-white/10 ${index === experiencesData.length - 1 ? 'border-b' : ''}`}
+                >
+                  {/* Trigger Header */}
+                  <div 
+                    onClick={() => setActiveExpIndex(isOpen ? null : index)}
+                    className="flex justify-between items-center py-6 cursor-pointer group select-none"
+                  >
+                    <div className="space-y-1">
+                      <h3 className="font-display text-sm sm:text-base font-light text-white group-hover:text-white/80 transition-colors">
+                        {exp.company} &mdash; <span className="text-white">{exp.location}</span>
+                      </h3>
+                      <p className="font-sans text-xs text-white/50 font-light">
+                        {exp.role} &nbsp;/&nbsp; {exp.period}
+                      </p>
+                    </div>
+                    
+                    {/* Diagonal Link Arrow rotating when open */}
+                    <span 
+                      className={`text-white transition-transform duration-500 ${isOpen ? 'rotate-90 text-white/80' : 'group-hover:translate-x-1 group-hover:-translate-y-1'}`}
+                    >
+                      <svg 
+                        className="h-4 w-4 fill-none stroke-current stroke-[1.5]" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    </span>
+                  </div>
+
+                  {/* Expandable Bullet Points Description */}
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <ul className="pb-6 pl-5 pr-2 list-disc space-y-2 text-white/70 text-xs sm:text-sm font-light leading-relaxed">
+                      {exp.bullets.map((bullet, idx) => (
+                        <li key={idx} className="marker:text-white/30">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </div>
+              );
+            })}
           </div>
 
         </div>
