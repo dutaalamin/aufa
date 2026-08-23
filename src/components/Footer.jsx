@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="w-full px-6 md:px-12 relative z-10 flex flex-col space-y-6">
         
         {/* Top Row: Solid SVG Social Links (Top Left) */}
-        <div className="flex items-center gap-4 text-slate-400">
+        <div className="flex items-center gap-4 text-white/60">
           {/* Instagram */}
           <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
             <svg className="h-[15px] w-[15px] fill-current" viewBox="0 0 24 24">
@@ -50,18 +50,18 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-1">
           {/* Bottom Left: Privacy Link (Thick / Semibold - Explicitly White) */}
           <div className="font-sans text-[13px] font-semibold tracking-wide">
-            <a href="#privacy" className="text-white hover:text-slate-300 transition-colors">
+            <a href="#privacy" className="text-white hover:text-white/80 transition-colors">
               Privacy & Cookies Policy
             </a>
           </div>
           
           {/* Middle: Geographic Location Stamp (Premium Architecture Studio style) */}
-          <div className="font-display text-[10px] tracking-[0.25em] text-slate-400 uppercase">
+          <div className="font-display text-[10px] tracking-[0.25em] text-white/50 uppercase">
             Bali / Indonesia
           </div>
           
           {/* Bottom Right: Copyright stamp (Brightened and enlarged) */}
-          <div className="font-sans text-[13px] text-slate-200 font-light tracking-wide">
+          <div className="font-sans text-[13px] text-white/80 font-light tracking-wide">
             &copy; {new Date().getFullYear()} Aufa. All rights reserved.
           </div>
         </div>
