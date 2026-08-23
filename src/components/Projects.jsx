@@ -225,7 +225,7 @@ export default function Projects({ onSelectProject }) {
               </h2>
               <button 
                 onClick={scrollToAllProjects}
-                className="font-display text-[10px] tracking-widest text-slate-400 hover:text-white uppercase transition-colors focus:outline-none cursor-pointer hidden sm:block"
+                className="font-display text-[10px] tracking-widest text-white/60 hover:text-white uppercase transition-colors focus:outline-none cursor-pointer hidden sm:block"
               >
                 View All &gt;
               </button>
@@ -235,14 +235,14 @@ export default function Projects({ onSelectProject }) {
             <div className="flex items-center gap-4 text-white">
               <button 
                 onClick={scrollLeft} 
-                className="text-slate-400 hover:text-white transition-colors focus:outline-none cursor-pointer p-1"
+                className="text-white/60 hover:text-white transition-colors focus:outline-none cursor-pointer p-1"
                 aria-label="Scroll left"
               >
                 <ChevronLeft className="h-5 w-5 stroke-[1.5]" />
               </button>
               <button 
                 onClick={scrollRight} 
-                className="text-slate-400 hover:text-white transition-colors focus:outline-none cursor-pointer p-1"
+                className="text-white/60 hover:text-white transition-colors focus:outline-none cursor-pointer p-1"
                 aria-label="Scroll right"
               >
                 <ChevronRight className="h-5 w-5 stroke-[1.5]" />
@@ -282,7 +282,7 @@ export default function Projects({ onSelectProject }) {
                   <h3 className="font-display text-sm font-light text-white group-hover:text-white/80 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="font-sans text-[11px] text-slate-500 font-light">
+                  <p className="font-sans text-[11px] text-white/50 font-light">
                     {project.location} / {project.year}
                   </p>
                 </div>
@@ -326,7 +326,7 @@ export default function Projects({ onSelectProject }) {
                   <h3 className="font-display text-sm font-light text-white group-hover:text-white/80 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="font-sans text-[11px] text-slate-500 font-light">
+                  <p className="font-sans text-[11px] text-white/50 font-light">
                     {project.location} / {project.year}
                   </p>
                 </div>
