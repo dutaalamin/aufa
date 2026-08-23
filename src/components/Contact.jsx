@@ -89,7 +89,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. John Doe"
-                      className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none placeholder:text-slate-400"
+                      className="w-full bg-white/[0.02] border border-white/15 focus:border-white focus:bg-white/[0.04] px-4 py-3 text-xs text-white placeholder:text-white/30 outline-none rounded-none transition-all duration-300"
                     />
                   </div>
  
@@ -102,7 +102,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. john@example.com"
-                      className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none placeholder:text-slate-400"
+                      className="w-full bg-white/[0.02] border border-white/15 focus:border-white focus:bg-white/[0.04] px-4 py-3 text-xs text-white placeholder:text-white/30 outline-none rounded-none transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -113,16 +113,16 @@ export default function Contact() {
                   <select 
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none cursor-pointer appearance-none pr-10"
+                    className="w-full bg-white/[0.02] border border-white/15 focus:border-white focus:bg-white/[0.04] px-4 py-3 text-xs text-white outline-none rounded-none cursor-pointer appearance-none pr-10 transition-all duration-300"
                   >
-                    <option value="Villa" className="bg-white text-slate-900">Luxury Villa / Private Residence</option>
-                    <option value="Resort" className="bg-white text-slate-900">Wellness Resort / Cabin Estate</option>
-                    <option value="Interior" className="bg-white text-slate-900">Interior Space Architecture</option>
-                    <option value="Commercial" className="bg-white text-slate-900">Commercial / Mixed-Use Development</option>
-                    <option value="Consultation" className="bg-white text-slate-900">Design Feasibility Consultation</option>
+                    <option value="Villa" className="bg-charcoal-deep text-white">Luxury Villa / Private Residence</option>
+                    <option value="Resort" className="bg-charcoal-deep text-white">Wellness Resort / Cabin Estate</option>
+                    <option value="Interior" className="bg-charcoal-deep text-white">Interior Space Architecture</option>
+                    <option value="Commercial" className="bg-charcoal-deep text-white">Commercial / Mixed-Use Development</option>
+                    <option value="Consultation" className="bg-charcoal-deep text-white">Design Feasibility Consultation</option>
                   </select>
                   {/* Custom Arrow Selector */}
-                  <div className="absolute right-3 top-[32px] pointer-events-none text-slate-500">
+                  <div className="absolute right-3 top-[32px] pointer-events-none text-white/50">
                     <svg className="h-3 w-3 fill-none stroke-current stroke-[1.5]" viewBox="0 0 24 24">
                       <path d="M6 9l6 6 6-6" />
                     </svg>
@@ -138,7 +138,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe your site location, estimated size, and design goals..."
-                    className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none resize-none placeholder:text-slate-400"
+                    className="w-full bg-white/[0.02] border border-white/15 focus:border-white focus:bg-white/[0.04] px-4 py-3 text-xs text-white placeholder:text-white/30 outline-none rounded-none resize-none transition-all duration-300"
                   />
                 </div>
 
