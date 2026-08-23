@@ -9,7 +9,7 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', id: 'home', hasSub: false },
     { label: 'About Us', id: 'about', hasSub: true },
-    { label: 'Selected Projects', id: 'projects', hasSub: true },
+    { label: 'Featured Projects', id: 'projects', hasSub: true },
     { label: 'Contact', id: 'contact', hasSub: false },
   ];
 
