@@ -23,7 +23,7 @@ export default function Contact() {
   return (
     <section 
       id="contact" 
-      className="relative py-24 md:py-32 bg-charcoal-deep border-b border-white/5 overflow-hidden"
+      className="relative py-24 md:py-32 bg-charcoal-deep overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-40" />

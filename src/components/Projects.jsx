@@ -112,7 +112,7 @@ export default function Projects({ onSelectProject }) {
   return (
     <section 
       id="projects" 
-      className="relative py-24 md:py-32 bg-charcoal-deep overflow-hidden border-b border-white/5"
+      className="relative py-24 md:py-32 bg-charcoal-deep overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-40" />
