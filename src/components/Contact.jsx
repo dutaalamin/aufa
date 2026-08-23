@@ -33,60 +33,28 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
           {/* Left Column: Contact details */}
-          <div className="lg:col-span-5 space-y-10">
-            <div className="space-y-4">
-              <span className="font-display text-xs uppercase tracking-mega text-white/50 font-light block">
-                COLLABORATE
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl font-light text-white tracking-tight leading-tight">
-                Let’s Structure <br />
-                Your Vision
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-2">
+              <h2 className="font-display text-2xl sm:text-3xl font-light text-white uppercase tracking-wider">
+                Contact
               </h2>
-              <div className="w-16 h-[1px] bg-white" />
             </div>
 
-            {/* Studio Info List (Aedas line-divider style) */}
-            <div className="w-full flex flex-col pt-4">
+            {/* Studio Info List (Simple text style) */}
+            <div className="w-full flex flex-col space-y-6">
               
-              {/* Address Row */}
-              <div className="border-t border-white/10 py-6 space-y-2">
-                <h4 className="font-display text-[9px] text-white/50 uppercase tracking-widest">
-                  Studio Address
-                </h4>
-                <p className="font-sans text-xs sm:text-sm text-white font-light leading-relaxed">
-                  AUFA STUDIO<br />
-                  Jl. Pantai Bingin No. 42, Uluwatu<br />
-                  Badung, Bali 80361, Indonesia
-                </p>
-              </div>
-
               {/* Email Row */}
-              <div className="border-t border-white/10 py-6 space-y-2">
+              <div className="space-y-2">
                 <h4 className="font-display text-[9px] text-white/50 uppercase tracking-widest">
                   Email Inquiry
                 </h4>
-                <div className="space-y-1 font-sans text-xs sm:text-sm text-white font-light">
-                  <a href="mailto:hello@aufastudio.com" className="hover:text-white/80 transition-colors block">
+                <div className="space-y-1 font-sans text-sm sm:text-base text-white font-light">
+                  <a href="mailto:hello@aufastudio.com" className="hover:text-white/80 transition-colors block font-medium">
                     hello@aufastudio.com
                   </a>
-                  <a href="mailto:press@aufastudio.com" className="text-white/60 hover:text-white transition-colors block text-xs mt-0.5">
+                  <a href="mailto:press@aufastudio.com" className="text-white/60 hover:text-white transition-colors block text-sm mt-1">
                     press@aufastudio.com
                   </a>
-                </div>
-              </div>
-
-              {/* Phone Row */}
-              <div className="border-t border-white/10 border-b border-white/10 py-6 space-y-2">
-                <h4 className="font-display text-[9px] text-white/50 uppercase tracking-widest">
-                  Call Us
-                </h4>
-                <div className="space-y-1 font-sans text-xs sm:text-sm text-white font-light">
-                  <a href="tel:+62361765432" className="hover:text-white/80 transition-colors block">
-                    +62 361 765 432
-                  </a>
-                  <span className="text-white/40 text-xs block mt-0.5">
-                    Mon - Fri, 09:00 - 18:00 (GMT+8)
-                  </span>
                 </div>
               </div>
 
@@ -121,7 +89,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. John Doe"
-                      className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 px-0 text-xs text-white placeholder:text-white/20 outline-none transition-colors duration-300 rounded-none"
+                      className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none placeholder:text-slate-400"
                     />
                   </div>
  
@@ -134,7 +102,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. john@example.com"
-                      className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 px-0 text-xs text-white placeholder:text-white/20 outline-none transition-colors duration-300 rounded-none"
+                      className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none placeholder:text-slate-400"
                     />
                   </div>
                 </div>
@@ -145,16 +113,16 @@ export default function Contact() {
                   <select 
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 px-0 text-xs text-white outline-none transition-colors duration-300 rounded-none cursor-pointer appearance-none"
+                    className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none cursor-pointer appearance-none pr-10"
                   >
-                    <option value="Villa" className="bg-charcoal-deep text-white">Luxury Villa / Private Residence</option>
-                    <option value="Resort" className="bg-charcoal-deep text-white">Wellness Resort / Cabin Estate</option>
-                    <option value="Interior" className="bg-charcoal-deep text-white">Interior Space Architecture</option>
-                    <option value="Commercial" className="bg-charcoal-deep text-white">Commercial / Mixed-Use Development</option>
-                    <option value="Consultation" className="bg-charcoal-deep text-white">Design Feasibility Consultation</option>
+                    <option value="Villa" className="bg-white text-slate-900">Luxury Villa / Private Residence</option>
+                    <option value="Resort" className="bg-white text-slate-900">Wellness Resort / Cabin Estate</option>
+                    <option value="Interior" className="bg-white text-slate-900">Interior Space Architecture</option>
+                    <option value="Commercial" className="bg-white text-slate-900">Commercial / Mixed-Use Development</option>
+                    <option value="Consultation" className="bg-white text-slate-900">Design Feasibility Consultation</option>
                   </select>
                   {/* Custom Arrow Selector */}
-                  <div className="absolute right-0 bottom-3 pointer-events-none text-white/40">
+                  <div className="absolute right-3 top-[32px] pointer-events-none text-slate-500">
                     <svg className="h-3 w-3 fill-none stroke-current stroke-[1.5]" viewBox="0 0 24 24">
                       <path d="M6 9l6 6 6-6" />
                     </svg>
@@ -170,14 +138,14 @@ export default function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe your site location, estimated size, and design goals..."
-                    className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 px-0 text-xs text-white placeholder:text-white/20 outline-none transition-colors duration-300 rounded-none resize-none"
+                    className="w-full bg-white text-slate-900 px-4 py-3 text-xs outline-none rounded-none resize-none placeholder:text-slate-400"
                   />
                 </div>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="group w-full py-6 border-t border-b border-white/10 hover:border-white text-white font-display text-xs uppercase tracking-widest transition-all duration-500 flex items-center justify-between cursor-pointer focus:outline-none"
+                  className="group w-full py-4 text-white hover:text-white/80 font-display text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-between cursor-pointer focus:outline-none"
                 >
                   <span>Send Inquiry</span>
                   <span className="text-white transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
