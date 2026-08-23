@@ -41,23 +41,13 @@ export default function Contact() {
             </div>
 
             {/* Studio Info List (Simple text style) */}
-            <div className="w-full flex flex-col space-y-6">
-              
-              {/* Email Row */}
-              <div className="space-y-2">
-                <h4 className="font-display text-[9px] text-white/50 uppercase tracking-widest">
-                  Email Inquiry
-                </h4>
-                <div className="space-y-1 font-sans text-sm sm:text-base text-white font-light">
-                  <a href="mailto:hello@aufastudio.com" className="hover:text-white/80 transition-colors block font-medium">
-                    hello@aufastudio.com
-                  </a>
-                  <a href="mailto:press@aufastudio.com" className="text-white/60 hover:text-white transition-colors block text-sm mt-1">
-                    press@aufastudio.com
-                  </a>
-                </div>
-              </div>
-
+            <div className="w-full">
+              <a 
+                href="mailto:hello@aufastudio.com" 
+                className="font-sans text-sm sm:text-base text-white hover:text-white/80 font-medium transition-colors block"
+              >
+                hello@aufastudio.com
+              </a>
             </div>
             
           </div>
