@@ -122,14 +122,9 @@ export default function Navbar() {
                   <button
                     key={item.id}
                     onClick={() => scrollTo(item.id)}
-                    className="font-sans text-xl sm:text-[22px] font-light text-neutral-900 hover:text-neutral-900/60 transition-all duration-300 focus:outline-none w-full text-left flex justify-between items-center group cursor-pointer pr-4"
+                    className="font-sans text-xl sm:text-[22px] font-light text-neutral-900 hover:text-neutral-900/60 transition-all duration-300 focus:outline-none w-full text-left flex justify-between items-center group cursor-pointer"
                   >
                     <span>{item.label}</span>
-                    {item.hasSub && (
-                      <span className="text-black/20 group-hover:text-neutral-900 transition-colors duration-300 font-light text-lg">
-                        +
-                      </span>
-                    )}
                   </button>
                 ))}
               </div>
