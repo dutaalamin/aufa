@@ -69,12 +69,14 @@ export const projectsData = [
     area: '580 sqm',
     scope: 'Architecture & Interior Design',
     client: 'Private Client',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-modern-apartment-building-exterior-44122-large.mp4',
+    image: '/mv1.webp',
     images: [
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80'
+      '/mv1.webp', '/mv2.webp', '/mv3.webp', '/mv4.webp', '/mv5.webp',
+      '/mv6.webp', '/mv7.webp', '/mv8.webp', '/mv9.webp', '/mv10.webp',
+      '/mv11.webp', '/mv12.webp', '/mv13.webp', '/mv14.webp', '/mv15.webp',
+      '/mv16.webp', '/mv17.webp', '/mv18.webp', '/mv19.webp', '/mv20.webp',
+      '/mv21.webp', '/mv22.webp', '/mv23.webp', '/mv24.webp', '/mv25.webp',
+      '/mv26.webp'
     ],
     description: 'A minimalist concrete-framed family house optimized for natural cross-ventilation. Facing the sea, it uses structural cantilevers to create deep shading zones, shielding the glass facades from direct solar heat.',
     specifications: [
