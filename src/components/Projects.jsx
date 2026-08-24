@@ -13,11 +13,10 @@ export const projectsData = [
     area: '750 sqm',
     scope: 'Architecture & Interior Design',
     client: 'Nara Residences Ltd.',
-    image: '/1.png',
+    image: '/3.png',
     images: [
       '/1.png',
       '/2.png',
-      '/3.png',
       '/4.png',
       '/5.png',
       '/6.png',
