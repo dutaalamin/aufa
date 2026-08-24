@@ -18,11 +18,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [selectedProject]);
 
-  // Handle preloader display time
+  // Handle preloader display time (faster timeout)
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPreloader(false);
-    }, 2500);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -63,7 +63,7 @@ export default function App() {
             initial={{ opacity: 1 }}
             exit={{ 
               opacity: 0,
-              transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+              transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
             }}
             className="fixed inset-0 bg-charcoal-deep z-50 flex flex-col items-center justify-center pointer-events-auto"
           >
@@ -72,18 +72,18 @@ export default function App() {
             <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20" />
             
             <div className="relative flex flex-col items-center gap-6 overflow-hidden">
-              {/* Expanding Logo Letter-Spacing Animation */}
+              {/* Expanding Logo Letter-Spacing Animation (Snappy & Fast) */}
               <motion.div
                 initial={{ letterSpacing: "0.2em", opacity: 0 }}
                 animate={{ 
                   letterSpacing: "0.8em", 
                   opacity: 1,
-                  transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] }
+                  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
                 }}
                 exit={{ 
-                  scale: 0.97,
+                  scale: 0.98,
                   opacity: 0,
-                  transition: { duration: 0.6, ease: "easeIn" }
+                  transition: { duration: 0.3, ease: "easeIn" }
                 }}
                 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-white select-none text-center pl-[0.8em]"
               >
