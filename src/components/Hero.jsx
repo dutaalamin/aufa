@@ -21,7 +21,7 @@ export default function Hero({ onSelectProject }) {
       id="home" 
       className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-charcoal-deep"
     >
-      {/* Background Video with Crossfading */}
+      {/* Background Video or Image with Crossfading */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeIndex}
@@ -31,15 +31,23 @@ export default function Hero({ onSelectProject }) {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0 z-0"
         >
-          <video
-            src={currentProject.videoUrl}
-            poster={currentProject.image}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover pointer-events-none"
-          />
+          {currentProject.videoUrl ? (
+            <video
+              src={currentProject.videoUrl}
+              poster={currentProject.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover pointer-events-none"
+            />
+          ) : (
+            <img
+              src={currentProject.image}
+              alt={currentProject.title}
+              className="w-full h-full object-cover"
+            />
+          )}
         </motion.div>
       </AnimatePresence>
 

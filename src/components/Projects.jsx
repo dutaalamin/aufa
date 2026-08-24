@@ -13,12 +13,18 @@ export const projectsData = [
     area: '750 sqm',
     scope: 'Architecture & Interior Design',
     client: 'Nara Residences Ltd.',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-modern-villa-with-a-swimming-pool-42226-large.mp4',
+    image: '/1.png',
     images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80'
+      '/1.png',
+      '/2.png',
+      '/3.png',
+      '/4.png',
+      '/5.png',
+      '/6.png',
+      '/7.png',
+      '/8.png',
+      '/9.png',
+      '/10.png'
     ],
     description: 'A multi-generational community space designed to foster social interaction and collective growth. Combining open timber structures with local stone pavements, the architecture blends boundaries between inside and outside, creating a welcoming public courtyard.',
     specifications: [
