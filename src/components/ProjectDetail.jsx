@@ -160,15 +160,8 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
       </section>
 
       {/* 3. HORIZONTAL IMAGE GALLERY (AEDAS STYLE) */}
-      <section className="w-full py-12 md:py-20 border-t border-white/5 bg-charcoal-dark/20">
+      <section className="w-full py-12 md:py-20 bg-charcoal-dark/20">
         <div className="w-full space-y-6">
-          
-          {/* Gallery Header Controls (Aligned to standard container margins) */}
-          <div className="w-full px-6 md:px-12 max-w-7xl mx-auto flex items-center justify-between">
-            <h4 className="font-display text-[10px] uppercase tracking-mega text-white/40">
-              Visual Gallery
-            </h4>
-          </div>
 
           {/* Horizontal Scrolling Slider List (Left-aligned, starts from screen edge offset) */}
           <div 
