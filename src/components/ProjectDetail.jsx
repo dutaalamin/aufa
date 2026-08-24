@@ -53,7 +53,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
     <div className="w-full bg-charcoal-deep text-slate-100 min-h-screen">
       
       {/* 1. HERO SECTION */}
-      <section className="relative h-[85vh] w-full flex items-end justify-start overflow-hidden bg-charcoal-dark border-b border-white/5">
+      <section className="relative h-screen w-full flex items-end justify-start overflow-hidden bg-charcoal-dark border-b border-white/5">
         {/* Background Visual */}
         <div className="absolute inset-0 z-0">
           {project.videoUrl ? (
@@ -64,27 +64,19 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover opacity-60 pointer-events-none"
+              className="w-full h-full object-cover opacity-95 pointer-events-none"
             />
           ) : (
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover opacity-60"
+              className="w-full h-full object-cover opacity-95"
             />
           )}
-          {/* Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-transparent to-black/35 z-10" />
+          {/* Localized Dark Gradients (Protects top header and bottom text, leaving middle fully bright) */}
+          <div className="absolute inset-x-0 bottom-0 h-[45vh] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-[25vh] bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
         </div>
-
-        {/* Back Button (Subtle & Floating under Navbar) */}
-        <button
-          onClick={onBack}
-          className="absolute top-28 left-6 md:left-12 z-30 font-display text-[10px] tracking-widest text-white/50 hover:text-white uppercase transition-colors flex items-center gap-2 focus:outline-none cursor-pointer group"
-        >
-          <ChevronLeft className="h-3 w-3 transition-transform group-hover:-translate-x-1" />
-          Back to Projects
-        </button>
 
         {/* Project Core Info Overlay */}
         <div className="w-full px-6 md:px-12 pb-16 md:pb-20 relative z-20 space-y-4 max-w-7xl">
