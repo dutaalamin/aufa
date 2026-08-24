@@ -79,10 +79,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
         </div>
 
         {/* Project Core Info Overlay */}
-        <div className="w-full px-6 md:px-12 pb-16 md:pb-20 relative z-20 space-y-4 max-w-7xl">
-          <span className="font-display text-[9px] sm:text-[10px] uppercase tracking-mega text-white/60 border border-white/20 px-3 py-1 bg-charcoal-deep/80 backdrop-blur-md">
-            {project.category}
-          </span>
+        <div className="w-full px-6 md:px-12 pb-16 md:pb-20 relative z-20 space-y-2 max-w-7xl">
           
           <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-white tracking-wide pt-2">
             {project.title}
