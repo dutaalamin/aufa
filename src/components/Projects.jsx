@@ -13,17 +13,17 @@ export const projectsData = [
     area: '750 sqm',
     scope: 'Architecture & Interior Design',
     client: 'Nara Residences Ltd.',
-    image: '/3.png',
+    image: '/together3.webp',
     images: [
-      '/1.png',
-      '/2.png',
-      '/4.png',
-      '/5.png',
-      '/6.png',
-      '/7.png',
-      '/8.png',
-      '/9.png',
-      '/10.png'
+      '/together1.webp',
+      '/together2.webp',
+      '/together4.webp',
+      '/together5.webp',
+      '/together6.webp',
+      '/together7.webp',
+      '/together8.webp',
+      '/together9.webp',
+      '/together10.webp'
     ],
     description: 'A multi-generational community space designed to foster social interaction and collective growth. Combining open timber structures with local stone pavements, the architecture blends boundaries between inside and outside, creating a welcoming public courtyard.',
     specifications: [
@@ -306,7 +306,7 @@ export default function Projects({ onSelectProject }) {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('3.png') ? 'scale-[1.45] group-hover:scale-[1.5]' : 'group-hover:scale-105'}`}
+                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('together3.webp') ? 'scale-[1.45] group-hover:scale-[1.5]' : 'group-hover:scale-105'}`}
                     loading="lazy"
                   />
                 </div>
@@ -350,7 +350,7 @@ export default function Projects({ onSelectProject }) {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('3.png') ? 'scale-[1.35] group-hover:scale-[1.4]' : 'group-hover:scale-105'}`}
+                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('together3.webp') ? 'scale-[1.35] group-hover:scale-[1.4]' : 'group-hover:scale-105'}`}
                     loading="lazy"
                   />
                 </div>

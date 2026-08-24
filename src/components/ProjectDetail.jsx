@@ -70,7 +70,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
             <img
               src={project.image}
               alt={project.title}
-              className={`w-full h-full object-cover opacity-95 ${project.image.includes('3.png') ? 'scale-[1.35]' : ''}`}
+              className={`w-full h-full object-cover opacity-95 ${project.image.includes('together3.webp') ? 'scale-[1.35]' : ''}`}
             />
           )}
           {/* Localized Dark Gradients (Protects top header and bottom text, leaving middle fully bright) */}
