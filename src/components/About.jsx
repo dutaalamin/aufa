@@ -20,8 +20,8 @@ export default function About() {
   // Fade in right text as the black panel slides away (35% to 70% scroll)
   const opacityRight = useTransform(scrollYProgress, [0.35, 0.7, 1.0], [0, 1, 1]);
 
-  // Parallax Y translation for background image (shifts up as user scrolls down)
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+  // Parallax X translation for background image (shifts right as user scrolls down)
+  const backgroundX = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
   
   // Parallax scale zoom (grows slightly as user scrolls down)
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.08]);
@@ -41,10 +41,10 @@ export default function About() {
         
         {/* Full-screen Background Image with Parallax Scroll & Zoom */}
         <motion.div 
-          className="absolute inset-x-0 -top-[10%] h-[120%] bg-cover bg-center z-0 opacity-90"
+          className="absolute -left-[10%] -top-[10%] w-[120%] h-[120%] bg-cover bg-center z-0 opacity-90"
           style={{ 
             backgroundImage: `url('/nest1.webp')`,
-            y: backgroundY,
+            x: backgroundX,
             scale: backgroundScale
           }}
         />
