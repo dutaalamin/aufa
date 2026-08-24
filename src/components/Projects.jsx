@@ -313,10 +313,6 @@ export default function Projects({ onSelectProject }) {
                     className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                     loading="lazy"
                   />
-                  {/* Category Indicator Stamp */}
-                  <span className="absolute top-4 left-4 z-20 bg-charcoal-deep/80 backdrop-blur-md px-3 py-1 font-display text-[9px] uppercase tracking-widest text-white border border-white/10">
-                    {project.category}
-                  </span>
                 </div>
 
                 {/* Text Metadata Details */}
