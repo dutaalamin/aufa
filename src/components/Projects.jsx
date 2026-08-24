@@ -127,11 +127,13 @@ export const projectsData = [
     area: '120 sqm',
     scope: 'Architecture & Research',
     client: 'Cultural Association',
-    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-modern-villa-with-a-swimming-pool-42226-large.mp4',
+    image: '/kolelo5.webp',
     images: [
-      'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'
+      '/kolelo1.webp',
+      '/kolelo2.webp',
+      '/kolelo3.webp',
+      '/kolelo4.webp',
+      '/kolelo5.webp'
     ],
     description: 'An experimental bamboo pavilion constructed with modular carpentry techniques. The roof geometry mimics organic leaf forms, optimizing rainwater runoff while creating high-volume natural exhaust ventilation.',
     specifications: [
