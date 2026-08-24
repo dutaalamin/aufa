@@ -211,21 +211,21 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
       </section>
 
       {/* 4. NEXT PROJECT TEASER BANNER */}
-      <section className="w-full px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto border-t border-white/5 space-y-6">
-        {/* Section Header */}
-        <div className="pb-2">
+      <section className="w-full pt-16 md:pt-24 border-t border-white/5 space-y-6">
+        {/* Section Header (Aligned to standard container margins) */}
+        <div className="w-full px-6 md:px-12 max-w-7xl mx-auto">
           <h4 className="font-display text-sm md:text-base font-light text-white tracking-wide uppercase">
             Next Project
           </h4>
         </div>
 
-        {/* Next Project Card */}
+        {/* Next Project Card (Full-width edge-to-edge!) */}
         <div 
           onClick={() => {
             onSelectProject(nextProject);
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] cursor-pointer overflow-hidden group bg-charcoal-dark border border-white/10"
+          className="relative w-full h-[50vh] md:h-[60vh] cursor-pointer overflow-hidden group bg-charcoal-dark"
         >
           {/* Hover zoom background image (Fully bright!) */}
           <img 
@@ -235,16 +235,18 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
           />
           
           {/* Subtle localized dark gradient at the bottom for readability of the white text overlay */}
-          <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10" />
           
-          {/* Bottom Left Info Overlay */}
-          <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10 space-y-1 text-left">
-            <h3 className="font-display text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-wide leading-none transition-colors duration-300 group-hover:text-gold">
-              {nextProject.title}
-            </h3>
-            <p className="font-sans text-xs sm:text-sm text-slate-300 font-light">
-              {nextProject.location} / {nextProject.year}
-            </p>
+          {/* Bottom Info Overlay (Content aligned to standard site container grid) */}
+          <div className="absolute inset-x-0 bottom-0 z-20 w-full px-6 md:px-12 pb-8 md:pb-12">
+            <div className="max-w-7xl mx-auto space-y-1 text-left">
+              <h3 className="font-display text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-wide leading-none transition-colors duration-300 group-hover:text-gold">
+                {nextProject.title}
+              </h3>
+              <p className="font-sans text-xs sm:text-sm text-slate-300 font-light">
+                {nextProject.location} / {nextProject.year}
+              </p>
+            </div>
           </div>
         </div>
       </section>
