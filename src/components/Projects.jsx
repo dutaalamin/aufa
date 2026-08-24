@@ -43,12 +43,13 @@ export const projectsData = [
     area: '450 sqm',
     scope: 'Full Architecture Scope',
     client: 'The Green Escape Group',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-villa-surrounded-by-nature-with-swimming-pool-42232-large.mp4',
+    image: '/nest1.webp',
     images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80'
+      '/nest1.webp',
+      '/nest2.webp',
+      '/nest3.webp',
+      '/nest4.webp',
+      '/nest5.webp'
     ],
     description: 'A private sanctuary crafted as a retreat for physical and mental rejuvenation. The house utilizes natural light channels, wood-clad thermal buffers, and volcanic stone pools to establish a serene microclimate in harmony with Balinese landscape.',
     specifications: [
