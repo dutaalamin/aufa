@@ -291,7 +291,7 @@ export default function Projects({ onSelectProject }) {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('3.png') ? 'scale-[1.15] group-hover:scale-[1.20]' : 'group-hover:scale-105'}`}
+                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('3.png') ? 'scale-[1.3] group-hover:scale-[1.35]' : 'group-hover:scale-105'}`}
                     loading="lazy"
                   />
                 </div>
@@ -335,7 +335,7 @@ export default function Projects({ onSelectProject }) {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('3.png') ? 'scale-[1.15] group-hover:scale-[1.20]' : 'group-hover:scale-105'}`}
+                    className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${project.image.includes('3.png') ? 'scale-[1.3] group-hover:scale-[1.35]' : 'group-hover:scale-105'}`}
                     loading="lazy"
                   />
                 </div>

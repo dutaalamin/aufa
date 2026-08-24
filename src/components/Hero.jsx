@@ -45,7 +45,7 @@ export default function Hero({ onSelectProject }) {
             <img
               src={currentProject.image}
               alt={currentProject.title}
-              className={`w-full h-full object-cover ${currentProject.image.includes('3.png') ? 'scale-[1.15]' : ''}`}
+              className={`w-full h-full object-cover ${currentProject.image.includes('3.png') ? 'scale-[1.3]' : ''}`}
             />
           )}
         </motion.div>
