@@ -212,8 +212,8 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
 
       {/* 4. NEXT PROJECT TEASER BANNER */}
       <section className="w-full pt-16 md:pt-24 border-t border-white/5 space-y-6">
-        {/* Section Header (Aligned to standard container margins) */}
-        <div className="w-full px-6 md:px-12 max-w-7xl mx-auto">
+        {/* Section Header (Aligned to the left edge margin, no max-w center) */}
+        <div className="w-full px-6 md:px-12">
           <h4 className="font-display text-sm md:text-base font-light text-white tracking-wide uppercase">
             Next Project
           </h4>
