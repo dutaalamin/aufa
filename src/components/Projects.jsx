@@ -96,12 +96,18 @@ export const projectsData = [
     area: '920 sqm',
     scope: 'Masterplanning & Architecture',
     client: 'Municipal Administration',
-    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-living-room-of-a-modern-apartment-42225-large.mp4',
+    image: '/mpp1.webp',
     images: [
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'
+      '/mpp1.webp',
+      '/mpp2.webp',
+      '/mpp3.webp',
+      '/mpp4.webp',
+      '/mpp5.webp',
+      '/mpp6.webp',
+      '/mpp7.webp',
+      '/mpp8.webp',
+      '/mpp9.webp',
+      '/mpp10.webp'
     ],
     description: 'A masterplan design concept transforming a public service facility into a transparent, citizen-centric administrative hub. Features include a bioclimatic roof atrium, green spaces, and a fluid lobby configuration to optimize visitor flow.',
     specifications: [

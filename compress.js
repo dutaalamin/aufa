@@ -30,12 +30,8 @@ async function run() {
     return;
   }
 
-  // Sort files numerically by extracting the first sequence of digits
-  files.sort((a, b) => {
-    const numA = parseInt(a.match(/\d+/) || 0, 10);
-    const numB = parseInt(b.match(/\d+/) || 0, 10);
-    return numA - numB;
-  });
+  // Sort files using natural sorting (so 2.png comes before 10.png, and timestamps sort correctly)
+  files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
   console.log(`Found ${files.length} images. Sorting order:`);
   console.log(files.map((f, i) => `${i + 1}: ${f}`).join('\n'));
