@@ -66,9 +66,9 @@ export default function Hero({ onSelectProject }) {
           >
             <button
               onClick={() => onSelectProject && onSelectProject(currentProject)}
-              className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none flex items-center gap-2 cursor-pointer hover:text-gold transition-colors text-left focus:outline-none group"
+              className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none cursor-pointer hover:text-gold transition-colors text-left focus:outline-none"
             >
-              <span className="text-gold font-light transition-transform duration-300 group-hover:rotate-90 inline-block">+</span> {currentProject.title}
+              {currentProject.title}
             </button>
           </motion.div>
         </AnimatePresence>
