@@ -18,7 +18,7 @@ export default function About() {
   const opacityLeft = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   // Fade in right text as the black panel slides away (35% to 70% scroll)
-  const opacityRight = useTransform(scrollYProgress, [0.35, 0.7], [0, 1]);
+  const opacityRight = useTransform(scrollYProgress, [0.35, 0.7, 1.0], [0, 1, 1]);
 
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
@@ -28,7 +28,7 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[180vh] w-full bg-charcoal-deep">
+    <div ref={containerRef} className="relative h-[220vh] w-full bg-charcoal-deep">
       
       {/* Pinned Sticky Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
