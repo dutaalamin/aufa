@@ -1,13 +1,21 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 export default function About() {
   const containerRef = useRef(null);
   
-  // Track scroll progress of the 180vh container (smooth middle-ground height)
-  const { scrollYProgress } = useScroll({
+  // Track raw scroll progress of the container
+  const { scrollYProgress: rawScrollProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
+  });
+
+  // Apply smooth spring physics damping to the scroll progress
+  // This adds inertia, meaning translations and fades will glide with momentum!
+  const scrollYProgress = useSpring(rawScrollProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
   // Slide the black panel off-screen across 75% of the scroll (0% to 75%)
@@ -29,7 +37,11 @@ export default function About() {
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      if (window.lenis) {
+        window.lenis.scrollTo(el, { duration: 1.5 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

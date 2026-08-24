@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutStatement from './components/AboutStatement';
@@ -13,9 +14,39 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showPreloader, setShowPreloader] = useState(true);
 
+  // Initialize Lenis Smooth Scroll
+  useEffect(() => {
+    if (showPreloader) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutQuart
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    window.lenis = lenis;
+
+    return () => {
+      lenis.destroy();
+      window.lenis = null;
+    };
+  }, [showPreloader]);
+
   // Auto-scroll to top when a project is selected or deselected
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [selectedProject]);
 
   // Handle preloader display time (faster timeout)
@@ -30,8 +61,10 @@ export default function App() {
   useEffect(() => {
     if (showPreloader) {
       document.body.style.overflow = 'hidden';
+      if (window.lenis) window.lenis.stop();
     } else {
       document.body.style.overflow = 'unset';
+      if (window.lenis) window.lenis.start();
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -44,11 +77,23 @@ export default function App() {
       // Wait for Home components to mount, then scroll
       setTimeout(() => {
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) {
+          if (window.lenis) {
+            window.lenis.scrollTo(el, { duration: 1.5 });
+          } else {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
       }, 50);
     } else {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) {
+        if (window.lenis) {
+          window.lenis.scrollTo(el, { duration: 1.5 });
+        } else {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
