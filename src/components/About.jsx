@@ -34,7 +34,7 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[220vh] w-full bg-charcoal-deep">
+    <div ref={containerRef} className="relative h-[150vh] w-full bg-charcoal-deep">
       
       {/* Pinned Sticky Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-row">
