@@ -52,7 +52,7 @@ export default function About() {
         {/* Left Side: Sliding Black Panel */}
         <motion.div 
           style={{ x }}
-          className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 h-full bg-charcoal-deep z-20 flex items-center justify-start px-8 md:px-16"
+          className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 h-full bg-charcoal-deep z-20 flex items-center justify-start pl-[5vw] pr-[5vw] md:pl-[10vw] md:pr-16"
         >
           {/* Grid lines inside sliding panel */}
           <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-20" />
@@ -70,7 +70,7 @@ export default function About() {
         {/* Right Side: Fade-in Text Overlay (Bottom-Right Aligned) */}
         <motion.div 
           style={{ opacity: opacityRight }}
-          className="absolute bottom-16 md:bottom-24 right-6 md:right-16 z-30 max-w-xl text-left md:text-right flex flex-col items-start md:items-end gap-6"
+          className="absolute bottom-16 md:bottom-24 left-[5vw] right-[5vw] md:left-auto md:right-[10vw] z-30 max-w-xl text-left md:text-right flex flex-col items-start md:items-end gap-6"
         >
           <p className="font-display text-base md:text-lg lg:text-[22px] font-light text-white leading-relaxed md:leading-[1.5]">
             Our team of design experts delivers site-specific solutions and high-performance layouts that create a positive, lasting impact for the families we design for.
