@@ -35,9 +35,9 @@ export default function About() {
         
         {/* Full-screen Background Image (Bright luxury villa architecture) */}
         <div 
-          className="absolute inset-0 bg-cover bg-center z-0 opacity-90"
+          className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-105"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80')` 
+            backgroundImage: `url('/nest1.webp')` 
           }}
         />
         

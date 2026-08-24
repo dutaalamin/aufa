@@ -9,9 +9,9 @@ export default function AboutStatement() {
     >
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-105"
+        className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-[1.35]"
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80')` 
+          backgroundImage: `url('/together3.webp')` 
         }}
       />
       
