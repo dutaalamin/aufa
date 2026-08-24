@@ -212,7 +212,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
           <img 
             src={nextProject.image} 
             alt={nextProject.title} 
-            className="w-full h-full object-cover transition-transform duration-1000 ease-out scale-100 group-hover:scale-102 opacity-95 group-hover:opacity-100"
+            className={`w-full h-full object-cover transition-transform duration-1000 ease-out opacity-95 group-hover:opacity-100 ${nextProject.image.includes('together3.webp') ? 'scale-[1.35] group-hover:scale-[1.4]' : 'scale-100 group-hover:scale-102'}`}
           />
           
           {/* Subtle localized dark gradient at the bottom for readability of the white text overlay */}
