@@ -13,6 +13,30 @@ import Footer from './components/Footer';
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showPreloader, setShowPreloader] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Smooth page transition handler for selecting projects
+  const navigateToProject = (project) => {
+    setIsTransitioning(true);
+    if (window.lenis) window.lenis.stop();
+
+    // After 500ms (when transition overlay is dark), swap content and scroll
+    setTimeout(() => {
+      setSelectedProject(project);
+
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      // Short buffer before fading transition screen out
+      setTimeout(() => {
+        setIsTransitioning(false);
+        if (window.lenis) window.lenis.start();
+      }, 300);
+    }, 500);
+  };
 
   // Initialize Lenis Smooth Scroll
   useEffect(() => {
@@ -155,6 +179,47 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Page Transition Loader Screen */}
+      <AnimatePresence>
+        {isTransitioning && (
+          <motion.div
+            key="page-transition"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ 
+              opacity: 0,
+              transition: { duration: 0.3 }
+            }}
+            className="fixed inset-0 bg-charcoal-deep z-50 flex flex-col items-center justify-center pointer-events-auto"
+          >
+            {/* Grid Lines Overlay */}
+            <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-15" />
+            <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20" />
+            
+            <div className="relative flex flex-col items-center gap-4 overflow-hidden">
+              <motion.div 
+                initial={{ opacity: 0.3 }}
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                className="font-display text-xs uppercase tracking-mega text-white font-light text-glow"
+              >
+                LOADING PROJECT
+              </motion.div>
+              
+              {/* Thin elegant horizontal line loader */}
+              <div className="w-20 h-[1px] bg-white/10 overflow-hidden relative">
+                <motion.div 
+                  initial={{ left: "-100%" }}
+                  animate={{ left: "100%" }}
+                  transition={{ duration: 1.0, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-0 bottom-0 w-1/2 bg-white"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Dynamic Background Fine Architectural Grid Lines */}
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20 z-0" />
 
@@ -166,15 +231,15 @@ export default function App() {
         {selectedProject ? (
           <ProjectDetail 
             project={selectedProject} 
-            onBack={() => setSelectedProject(null)} 
-            onSelectProject={setSelectedProject}
+            onBack={() => navigateToProject(null)} 
+            onSelectProject={navigateToProject}
           />
         ) : (
           <>
-            <Hero onSelectProject={setSelectedProject} />
+            <Hero onSelectProject={navigateToProject} />
             <AboutStatement />
             <About />
-            <Projects onSelectProject={setSelectedProject} />
+            <Projects onSelectProject={navigateToProject} />
             <Contact />
           </>
         )}
