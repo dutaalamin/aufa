@@ -66,7 +66,7 @@ export default function Hero({ onSelectProject }) {
           >
             <button
               onClick={() => onSelectProject && onSelectProject(currentProject)}
-              className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none cursor-pointer hover:text-gold transition-colors text-left focus:outline-none"
+              className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none cursor-pointer hover:text-white/60 active:scale-[0.98] transition-all duration-300 ease-out text-left focus:outline-none"
             >
               {currentProject.title}
             </button>
