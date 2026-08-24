@@ -153,11 +153,15 @@ export const projectsData = [
     area: '2400 sqm',
     scope: 'Urban Masterplanning',
     client: 'Municipal City Planning Office',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-villa-surrounded-by-nature-with-swimming-pool-42232-large.mp4',
+    image: '/braga7.webp',
     images: [
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80'
+      '/braga1.webp',
+      '/braga2.webp',
+      '/braga3.webp',
+      '/braga4.webp',
+      '/braga5.webp',
+      '/braga6.webp',
+      '/braga7.webp'
     ],
     description: "An urban masterplanning project aimed at revitalizing Bandung's historic heritage streetscape. The proposal introduces pedestrian-first cobblestone layouts, rain gardens for urban drainage, and modular street furniture styled after local ironworks.",
     specifications: [
