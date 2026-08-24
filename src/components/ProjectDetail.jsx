@@ -161,19 +161,42 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
 
       {/* 3. HORIZONTAL IMAGE GALLERY (AEDAS STYLE) */}
       <section className="w-full py-12 md:py-20 border-t border-white/5 bg-charcoal-dark/20">
-        <div className="w-full px-6 md:px-12 space-y-6 max-w-7xl mx-auto">
+        <div className="w-full space-y-6">
           
-          {/* Gallery Header Controls */}
-          <div className="flex items-center justify-between">
+          {/* Gallery Header Controls (Aligned to standard container margins) */}
+          <div className="w-full px-6 md:px-12 max-w-7xl mx-auto flex items-center justify-between">
             <h4 className="font-display text-[10px] uppercase tracking-mega text-white/40">
               Visual Gallery
             </h4>
-            
-            {/* Scroll Navigation Arrows */}
-            <div className="flex items-center gap-4 text-white">
-              <span className="font-display text-[10px] tracking-widest text-white/50 mr-2">
-                {activeSlide + 1} / {project.images.length}
-              </span>
+          </div>
+
+          {/* Horizontal Scrolling Slider List (Left-aligned, starts from screen edge offset) */}
+          <div 
+            ref={galleryRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto scrollbar-none gap-6 snap-x snap-mandatory scroll-smooth pl-6 md:pl-12 pr-6 md:pr-12"
+          >
+            {project.images.map((img, idx) => (
+              <div 
+                key={idx}
+                className="flex-shrink-0 w-[85vw] sm:w-[65vw] md:w-[50vw] aspect-[16/10] snap-start border border-white/5 bg-charcoal-deep"
+              >
+                <img 
+                  src={img} 
+                  alt={`${project.title} gallery detail ${idx + 1}`} 
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-101"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Gallery Footer Controls (Aligned to standard container margins) */}
+          <div className="w-full px-6 md:px-12 max-w-7xl mx-auto flex items-center justify-between text-white pt-2">
+            <span className="font-display text-[10px] tracking-widest text-white/50">
+              {activeSlide + 1} / {project.images.length}
+            </span>
+            <div className="flex items-center gap-4">
               <button 
                 onClick={() => scrollGallery('left')} 
                 className="border border-white/10 hover:border-white text-white/60 hover:text-white transition-colors p-2 cursor-pointer focus:outline-none"
@@ -191,59 +214,45 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
             </div>
           </div>
 
-          {/* Horizontal Scrolling Slider List */}
-          <div 
-            ref={galleryRef}
-            onScroll={handleScroll}
-            className="flex overflow-x-auto scrollbar-none gap-6 snap-x snap-mandatory scroll-smooth pb-4"
-          >
-            {project.images.map((img, idx) => (
-              <div 
-                key={idx}
-                className="flex-shrink-0 w-[85vw] sm:w-[65vw] md:w-[50vw] aspect-[16/10] snap-start border border-white/5 bg-charcoal-deep"
-              >
-                <img 
-                  src={img} 
-                  alt={`${project.title} gallery detail ${idx + 1}`} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-101"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-
         </div>
       </section>
 
       {/* 4. NEXT PROJECT TEASER BANNER */}
-      <section 
-        onClick={() => {
-          onSelectProject(nextProject);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        className="relative w-full h-[40vh] md:h-[50vh] flex items-center justify-center cursor-pointer overflow-hidden border-t border-white/10 group bg-black"
-      >
-        {/* Hover zoom background image */}
-        <img 
-          src={nextProject.image} 
-          alt={nextProject.title} 
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out scale-102 group-hover:scale-105 opacity-30 group-hover:opacity-40"
-        />
-        
-        {/* Dark Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-transparent to-transparent pointer-events-none" />
-        
-        {/* Content Callout */}
-        <div className="relative z-10 text-center space-y-4 px-6">
-          <span className="font-display text-[9px] uppercase tracking-mega text-slate-400 group-hover:text-white transition-colors duration-300">
+      <section className="w-full px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto border-t border-white/5 space-y-6">
+        {/* Section Header */}
+        <div className="pb-2">
+          <h4 className="font-display text-sm md:text-base font-light text-white tracking-wide uppercase">
             Next Project
-          </span>
-          <h3 className="font-display text-3xl sm:text-5xl font-light text-white tracking-wide transition-colors duration-300 group-hover:text-gold">
-            {nextProject.title}
-          </h3>
-          <p className="font-sans text-[11px] sm:text-xs text-slate-400 font-light">
-            {nextProject.location} / {nextProject.year}
-          </p>
+          </h4>
+        </div>
+
+        {/* Next Project Card */}
+        <div 
+          onClick={() => {
+            onSelectProject(nextProject);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="relative w-full aspect-[16/9] md:aspect-[21/9] cursor-pointer overflow-hidden group bg-charcoal-dark border border-white/10"
+        >
+          {/* Hover zoom background image (Fully bright!) */}
+          <img 
+            src={nextProject.image} 
+            alt={nextProject.title} 
+            className="w-full h-full object-cover transition-transform duration-1000 ease-out scale-100 group-hover:scale-102 opacity-95 group-hover:opacity-100"
+          />
+          
+          {/* Subtle localized dark gradient at the bottom for readability of the white text overlay */}
+          <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+          
+          {/* Bottom Left Info Overlay */}
+          <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10 space-y-1 text-left">
+            <h3 className="font-display text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-wide leading-none transition-colors duration-300 group-hover:text-gold">
+              {nextProject.title}
+            </h3>
+            <p className="font-sans text-xs sm:text-sm text-slate-300 font-light">
+              {nextProject.location} / {nextProject.year}
+            </p>
+          </div>
         </div>
       </section>
 
