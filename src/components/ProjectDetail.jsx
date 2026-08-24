@@ -211,7 +211,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
       </section>
 
       {/* 4. NEXT PROJECT TEASER BANNER */}
-      <section className="w-[95vw] md:w-[90vw] mx-auto py-16 md:py-24 border-t border-white/5 space-y-6">
+      <section className="w-[95vw] md:w-[90vw] mx-auto py-16 md:py-24 space-y-6">
         {/* Section Header */}
         <div className="pb-2">
           <h4 className="font-display text-xl sm:text-2xl font-light text-white tracking-wide uppercase">
