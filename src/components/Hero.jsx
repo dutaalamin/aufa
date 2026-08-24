@@ -52,7 +52,7 @@ export default function Hero({ onSelectProject }) {
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none z-10 opacity-40" />
 
       {/* Bottom Panel Overlay */}
-      <div className="absolute inset-x-0 bottom-16 md:bottom-24 z-20 w-full px-6 md:px-12 flex flex-row items-end justify-between">
+      <div className="absolute inset-x-0 bottom-16 md:bottom-24 z-20 w-full px-6 md:px-12 flex flex-row items-center justify-between">
         
         {/* Left Side: Project Title */}
         <AnimatePresence mode="wait">
