@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { projectsData } from './Projects';
 
-export default function Hero() {
+export default function Hero({ onSelectProject }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleNext = () => {
@@ -64,9 +64,12 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-start gap-1"
           >
-            <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none flex items-center gap-2">
-              <span className="text-gold font-light">+</span> {currentProject.title}
-            </h1>
+            <button
+              onClick={() => onSelectProject && onSelectProject(currentProject)}
+              className="font-display text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-white leading-none flex items-center gap-2 cursor-pointer hover:text-gold transition-colors text-left focus:outline-none group"
+            >
+              <span className="text-gold font-light transition-transform duration-300 group-hover:rotate-90 inline-block">+</span> {currentProject.title}
+            </button>
           </motion.div>
         </AnimatePresence>
 

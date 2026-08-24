@@ -23,7 +23,7 @@ export default function App() {
 
       {/* Main Sections */}
       <main className="relative z-10">
-        <Hero />
+        <Hero onSelectProject={setSelectedProject} />
         <AboutStatement />
         <About />
         <Projects onSelectProject={setSelectedProject} />
