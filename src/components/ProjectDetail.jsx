@@ -91,72 +91,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
         </div>
       </section>
 
-      {/* 2. SPECIFICATIONS & DESCRIPTION GRID */}
-      <section className="w-full px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Column: Technical Data Sheet (4/12 grid) */}
-          <div className="lg:col-span-4 space-y-6 border-l border-white/10 pl-6 py-2">
-            <h4 className="font-display text-[10px] uppercase tracking-mega text-white/40 mb-4">
-              Project Data
-            </h4>
-            
-            <div className="space-y-4 font-sans text-xs sm:text-sm">
-              <div>
-                <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Location</span>
-                <span className="text-slate-200 mt-1 block font-light">{project.location}</span>
-              </div>
-              
-              <div>
-                <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Year</span>
-                <span className="text-slate-200 mt-1 block font-light">{project.year}</span>
-              </div>
-
-              {project.area && (
-                <div>
-                  <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Gross Area</span>
-                  <span className="text-slate-200 mt-1 block font-light">{project.area}</span>
-                </div>
-              )}
-
-              {project.client && (
-                <div>
-                  <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Client</span>
-                  <span className="text-slate-200 mt-1 block font-light">{project.client}</span>
-                </div>
-              )}
-
-              {project.scope && (
-                <div>
-                  <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Scope of Service</span>
-                  <span className="text-slate-200 mt-1 block font-light">{project.scope}</span>
-                </div>
-              )}
-
-              {/* Dynamic specs details */}
-              {project.specifications && project.specifications.map((spec, index) => (
-                <div key={index}>
-                  <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">{spec.label}</span>
-                  <span className="text-slate-200 mt-1 block font-light">{spec.value}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column: Narrative / Description (8/12 grid) */}
-          <div className="lg:col-span-8 space-y-6">
-            <h4 className="font-display text-[10px] uppercase tracking-mega text-white/40">
-              Overview
-            </h4>
-            <p className="font-sans text-base sm:text-lg lg:text-xl font-light text-slate-300 leading-relaxed pt-2">
-              {project.description}
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. HORIZONTAL IMAGE GALLERY (AEDAS STYLE) */}
+      {/* 2. HORIZONTAL IMAGE GALLERY (AEDAS STYLE) */}
       <section className="w-full py-12 md:py-20 bg-charcoal-dark/20">
         <div className="w-[95vw] md:w-[90vw] mx-auto space-y-6">
 
@@ -204,6 +139,55 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* 3. OVERVIEW & SPECIFICATIONS (AEDAS STYLE) */}
+      <section className="w-[95vw] md:w-[90vw] mx-auto py-16 md:py-24 space-y-16">
+        {/* Description Text */}
+        <div className="space-y-6 max-w-4xl text-left">
+          <h3 className="font-display text-xs uppercase tracking-mega text-white/40">
+            Project Overview
+          </h3>
+          <p className="font-sans text-base sm:text-lg md:text-xl font-light text-slate-200 leading-relaxed md:leading-[1.6]">
+            {project.description}
+          </p>
+        </div>
+
+        {/* Specifications Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-12 border-t border-white/10 pt-12">
+          <div>
+            <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Location</span>
+            <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{project.location}</span>
+          </div>
+          <div>
+            <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Year</span>
+            <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{project.year}</span>
+          </div>
+          {project.area && (
+            <div>
+              <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Gross Area</span>
+              <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{project.area}</span>
+            </div>
+          )}
+          {project.scope && (
+            <div>
+              <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Scope of Work</span>
+              <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{project.scope}</span>
+            </div>
+          )}
+          {project.client && (
+            <div>
+              <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Client</span>
+              <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{project.client}</span>
+            </div>
+          )}
+          {project.specifications && project.specifications.map((spec, idx) => (
+            <div key={idx}>
+              <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">{spec.label}</span>
+              <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{spec.value}</span>
+            </div>
+          ))}
         </div>
       </section>
 
