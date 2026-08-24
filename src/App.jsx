@@ -20,7 +20,7 @@ export default function App() {
     setIsTransitioning(true);
     if (window.lenis) window.lenis.stop();
 
-    // After 500ms (when transition overlay is dark), swap content and scroll
+    // After 400ms (when transition overlay is dark), swap content and scroll
     setTimeout(() => {
       setSelectedProject(project);
 
@@ -34,8 +34,8 @@ export default function App() {
       setTimeout(() => {
         setIsTransitioning(false);
         if (window.lenis) window.lenis.start();
-      }, 300);
-    }, 500);
+      }, 150);
+    }, 400);
   };
 
   // Initialize Lenis Smooth Scroll
@@ -179,7 +179,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Page Transition Loader Screen */}
+      {/* Page Transition Overlay (Minimal clean dip-to-black shutter) */}
       <AnimatePresence>
         {isTransitioning && (
           <motion.div
@@ -188,35 +188,10 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ 
               opacity: 0,
-              transition: { duration: 0.3 }
+              transition: { duration: 0.25 }
             }}
-            className="fixed inset-0 bg-charcoal-deep z-50 flex flex-col items-center justify-center pointer-events-auto"
-          >
-            {/* Grid Lines Overlay */}
-            <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-15" />
-            <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20" />
-            
-            <div className="relative flex flex-col items-center gap-4 overflow-hidden">
-              <motion.div 
-                initial={{ opacity: 0.3 }}
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-                className="font-display text-xs uppercase tracking-mega text-white font-light text-glow"
-              >
-                LOADING PROJECT
-              </motion.div>
-              
-              {/* Thin elegant horizontal line loader */}
-              <div className="w-20 h-[1px] bg-white/10 overflow-hidden relative">
-                <motion.div 
-                  initial={{ left: "-100%" }}
-                  animate={{ left: "100%" }}
-                  transition={{ duration: 1.0, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 bottom-0 w-1/2 bg-white"
-                />
-              </div>
-            </div>
-          </motion.div>
+            className="fixed inset-0 bg-charcoal-deep z-50 pointer-events-auto"
+          />
         )}
       </AnimatePresence>
 
