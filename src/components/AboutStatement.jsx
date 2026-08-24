@@ -11,7 +11,7 @@ export default function AboutStatement() {
       <div 
         className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-105"
         style={{ 
-          backgroundImage: `url('/kolelo5.webp')` 
+          backgroundImage: `url('/mpp1.webp')` 
         }}
       />
       
