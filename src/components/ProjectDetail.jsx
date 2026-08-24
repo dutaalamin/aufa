@@ -155,7 +155,7 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
         </div>
 
         {/* Specifications Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-12 border-t border-white/10 pt-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-12 pt-4">
           <div>
             <span className="font-display text-[9px] uppercase tracking-widest text-slate-500 block">Location</span>
             <span className="text-slate-200 mt-1.5 block font-light text-sm sm:text-base">{project.location}</span>
