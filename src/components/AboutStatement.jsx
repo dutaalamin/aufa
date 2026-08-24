@@ -9,9 +9,9 @@ export default function AboutStatement() {
     >
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-[1.35]"
+        className="absolute inset-0 bg-cover bg-center z-0 opacity-90 scale-105"
         style={{ 
-          backgroundImage: `url('/together3.webp')` 
+          backgroundImage: `url('/kolelo5.webp')` 
         }}
       />
       
