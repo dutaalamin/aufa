@@ -137,7 +137,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
-            className="fixed inset-0 z-0 bg-white"
+            className="fixed inset-0 z-10 bg-white"
           >
             <ThreeHero onSelectProject={navigateToProject} selectedProject={selectedProject} />
           </motion.div>
@@ -246,8 +246,7 @@ export default function App() {
         ) : (
           <>
             {is3DActive ? (
-              // Empty space placeholder to let ThreeHero canvas shine below
-              <div className="h-screen w-full" />
+              null
             ) : (
               <>
                 <Hero onSelectProject={navigateToProject} />
