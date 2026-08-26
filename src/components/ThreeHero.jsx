@@ -58,6 +58,9 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   const selectedProjectRef = useRef(selectedProject);
   const onSelectProjectRef = useRef(onSelectProject);
   const targetCameraZRef = useRef(11.2);
+  const targetRotationYRef = useRef(0);
+  const targetRotationXRef = useRef(0);
+  const cubeGroupRef = useRef(null);
 
   const targetCameraPosRef = useRef(new THREE.Vector3(0, 0, 11.2));
   const targetCameraQuatRef = useRef(new THREE.Quaternion());
@@ -66,30 +69,26 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   useEffect(() => {
     selectedProjectRef.current = selectedProject;
 
-    if (selectedProject) {
+    if (selectedProject && cubeGroupRef.current) {
       const mesh = projectMeshesMapRef.current.get(selectedProject.id);
       if (mesh) {
-        const worldPos = new THREE.Vector3();
-        mesh.getWorldPosition(worldPos);
+        // Read local position from original position (un-rotated space)
+        const localPos = mesh.userData.originalPosition;
+        if (!localPos) return;
+
+        // Smoothly rotate the group to the nearest multiple of 2 * Math.PI (perfectly flat and upright)
+        const targetY = Math.round(cubeGroupRef.current.rotation.y / (2 * Math.PI)) * (2 * Math.PI);
+        const targetX = Math.round(cubeGroupRef.current.rotation.x / (2 * Math.PI)) * (2 * Math.PI);
         
-        const worldQuat = new THREE.Quaternion();
-        mesh.getWorldQuaternion(worldQuat);
+        targetRotationYRef.current = targetY;
+        targetRotationXRef.current = targetX;
         
-        // Get the direction pointing out of the front face of the cube in world space
-        const localZ = new THREE.Vector3(0, 0, 1);
-        localZ.applyQuaternion(worldQuat);
+        // Since the group aligns flat with the world axes, the camera simply glides 1.95 units
+        // along the Z-axis in front of the cube's original local position
+        const targetPos = new THREE.Vector3(localPos.x, localPos.y, localPos.z + 1.95);
         
-        // Get the local Y-axis (up direction of the image texture) in world space
-        const localY = new THREE.Vector3(0, 1, 0);
-        localY.applyQuaternion(worldQuat);
-        
-        // Place camera exactly 1.95 units in front of the rotated cube face
-        const targetPos = worldPos.clone().add(localZ.multiplyScalar(1.95));
-        
-        // Calculate the target rotation matrix and quaternion
-        const tempMatrix = new THREE.Matrix4();
-        tempMatrix.lookAt(targetPos, worldPos, localY);
-        const targetQuat = new THREE.Quaternion().setFromRotationMatrix(tempMatrix);
+        // The camera target rotation is identity (perfectly flat, upright)
+        const targetQuat = new THREE.Quaternion(); // identity (0, 0, 0, 1)
         
         targetCameraPosRef.current.copy(targetPos);
         targetCameraQuatRef.current.copy(targetQuat);
@@ -139,6 +138,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
     // --- 6. Cube Group & Meshes Generation ---
     const cubeGroup = new THREE.Group();
+    cubeGroupRef.current = cubeGroup;
     scene.add(cubeGroup);
 
     // RESTORED: original cubeSize and spacing
@@ -231,8 +231,8 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
         const deltaX = e.clientX - previousMousePosition.x;
         const deltaY = e.clientY - previousMousePosition.y;
 
-        targetRotationY += deltaX * 0.012;
-        targetRotationX += deltaY * 0.012;
+        targetRotationYRef.current += deltaX * 0.012;
+        targetRotationXRef.current += deltaY * 0.012;
 
         previousMousePosition = { x: e.clientX, y: e.clientY };
       }
@@ -264,8 +264,8 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
-    let targetRotationY = 0;
-    let targetRotationX = 0;
+    targetRotationYRef.current = 0;
+    targetRotationXRef.current = 0;
 
     container.addEventListener('pointerdown', handlePointerDown);
     window.addEventListener('pointermove', handlePointerMove);
@@ -281,12 +281,12 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
       // Disable rotation increment when dragging or when selectedProject is active
       if (!isDragging && !selectedProjectRef.current) {
-        targetRotationY += 0.0025;
-        targetRotationX += 0.0012;
+        targetRotationYRef.current += 0.0025;
+        targetRotationXRef.current += 0.0012;
       }
 
-      cubeGroup.rotation.y += (targetRotationY - cubeGroup.rotation.y) * 0.15;
-      cubeGroup.rotation.x += (targetRotationX - cubeGroup.rotation.x) * 0.15;
+      cubeGroup.rotation.y += (targetRotationYRef.current - cubeGroup.rotation.y) * 0.15;
+      cubeGroup.rotation.x += (targetRotationXRef.current - cubeGroup.rotation.x) * 0.15;
 
       // Smoothly interpolate camera position and rotation depending on state
       if (selectedProjectRef.current) {
