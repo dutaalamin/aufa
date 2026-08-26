@@ -102,7 +102,7 @@ export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGo
         </div>
 
         {/* Bottom Center Title & Click Prompt */}
-        <div className="absolute bottom-12 inset-x-0 mx-auto w-fit text-center pointer-events-none z-20 flex flex-col items-center gap-1.5">
+        <div className="absolute bottom-8 inset-x-0 mx-auto w-fit text-center pointer-events-none z-20 flex flex-col items-center gap-1.5">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-neutral-900 uppercase">
             {project.title}
           </h2>
