@@ -60,9 +60,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   const targetCameraZRef = useRef(11.2);
 
   const targetCameraPosRef = useRef(new THREE.Vector3(0, 0, 11.2));
-  const targetCameraLookRef = useRef(new THREE.Vector3(0, 0, 0));
-  const targetCameraUpRef = useRef(new THREE.Vector3(0, 1, 0));
-  const currentCameraLookRef = useRef(new THREE.Vector3(0, 0, 0));
+  const targetCameraQuatRef = useRef(new THREE.Quaternion());
   const projectMeshesMapRef = useRef(new Map());
 
   useEffect(() => {
@@ -88,14 +86,14 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
         // Place camera exactly 1.95 units in front of the rotated cube face
         const targetPos = worldPos.clone().add(localZ.multiplyScalar(1.95));
         
+        // Calculate the target rotation matrix and quaternion
+        const tempMatrix = new THREE.Matrix4();
+        tempMatrix.lookAt(targetPos, worldPos, localY);
+        const targetQuat = new THREE.Quaternion().setFromRotationMatrix(tempMatrix);
+        
         targetCameraPosRef.current.copy(targetPos);
-        targetCameraLookRef.current.copy(worldPos);
-        targetCameraUpRef.current.copy(localY);
+        targetCameraQuatRef.current.copy(targetQuat);
       }
-    } else {
-      targetCameraPosRef.current.set(0, 0, targetCameraZRef.current);
-      targetCameraLookRef.current.set(0, 0, 0);
-      targetCameraUpRef.current.set(0, 1, 0);
     }
   }, [selectedProject]);
 
@@ -290,20 +288,20 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
       cubeGroup.rotation.y += (targetRotationY - cubeGroup.rotation.y) * 0.15;
       cubeGroup.rotation.x += (targetRotationX - cubeGroup.rotation.x) * 0.15;
 
-      // Smoothly interpolate camera position, lookAt, and up vector depending on state
+      // Smoothly interpolate camera position and rotation depending on state
       if (selectedProjectRef.current) {
-        // Zoom camera in to face the selected project's cube
-        camera.position.lerp(targetCameraPosRef.current, 0.05);
-        currentCameraLookRef.current.lerp(targetCameraLookRef.current, 0.05);
-        camera.up.lerp(targetCameraUpRef.current, 0.05);
-        camera.lookAt(currentCameraLookRef.current);
+        // Zoom camera in to face the selected project's cube with calculated upright quaternion
+        camera.position.lerp(targetCameraPosRef.current, 0.06);
+        camera.quaternion.slerp(targetCameraQuatRef.current, 0.06);
       } else {
-        // Zoom camera back out to overview position centered on the origin
+        // Zoom camera back out to overview position, dynamically incorporating scroll-wheel Z changes
         const homePos = new THREE.Vector3(0, 0, targetCameraZRef.current);
-        camera.position.lerp(homePos, 0.05);
-        currentCameraLookRef.current.lerp(new THREE.Vector3(0, 0, 0), 0.05);
-        camera.up.lerp(new THREE.Vector3(0, 1, 0), 0.05);
-        camera.lookAt(currentCameraLookRef.current);
+        const tempMatrix = new THREE.Matrix4();
+        tempMatrix.lookAt(homePos, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0));
+        const homeQuat = new THREE.Quaternion().setFromRotationMatrix(tempMatrix);
+
+        camera.position.lerp(homePos, 0.06);
+        camera.quaternion.slerp(homeQuat, 0.06);
       }
 
       // Disable raycasting if a project is selected
