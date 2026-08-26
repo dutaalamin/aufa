@@ -86,18 +86,20 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
           )}
 
           {/* Hamburger Menu Toggle - Top Right */}
-          <button
-            onClick={() => setIsOpen(true)}
-            className={`p-2 transition-colors focus:outline-none flex items-center justify-center group cursor-pointer ${
-              is3DActive ? 'text-neutral-950 hover:text-neutral-700' : 'text-white hover:text-slate-400'
-            }`}
-          >
-            <div className="flex flex-col gap-1.5 w-6 items-end">
-              <span className={`h-[1px] w-6 transition-colors duration-500 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
-              <span className={`h-[1px] w-4 group-hover:w-6 transition-all duration-300 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
-              <span className={`h-[1px] w-2 group-hover:w-6 transition-all duration-300 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
-            </div>
-          </button>
+          {!is3DActive && (
+            <button
+              onClick={() => setIsOpen(true)}
+              className={`p-2 transition-colors focus:outline-none flex items-center justify-center group cursor-pointer ${
+                is3DActive ? 'text-neutral-950 hover:text-neutral-700' : 'text-white hover:text-slate-400'
+              }`}
+            >
+              <div className="flex flex-col gap-1.5 w-6 items-end">
+                <span className={`h-[1px] w-6 transition-colors duration-500 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
+                <span className={`h-[1px] w-4 group-hover:w-6 transition-all duration-300 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
+                <span className={`h-[1px] w-2 group-hover:w-6 transition-all duration-300 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
+              </div>
+            </button>
+          )}
         </div>
       </header>
 

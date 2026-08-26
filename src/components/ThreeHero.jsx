@@ -351,15 +351,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
 
 
-      {/* Top Left Branding */}
-      <div className="absolute top-12 left-12 z-20 pointer-events-auto">
-        <button
-          onClick={() => window.location.reload()}
-          className="text-left font-display font-light tracking-[0.3em] text-neutral-950 hover:opacity-80 transition-all duration-500 focus:outline-none cursor-pointer text-2xl sm:text-3xl"
-        >
-          AUFA
-        </button>
-      </div>
+
 
 
 
