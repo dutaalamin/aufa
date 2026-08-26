@@ -107,7 +107,7 @@ export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGo
             {project.title}
           </h2>
           <span className="font-display text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-neutral-600 font-semibold">
-            scroll down to see more
+            click or scroll down to see more
           </span>
         </div>
 
