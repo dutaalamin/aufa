@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 
-export default function ProjectDetail3D({ project, onBack, onGoHome, onSelectProject }) {
+export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGoHome, onSelectProject }) {
   if (!project) return null;
 
   const [showDetails, setShowDetails] = useState(false);
@@ -10,6 +10,13 @@ export default function ProjectDetail3D({ project, onBack, onGoHome, onSelectPro
 
   // Filter out the main cover image from the rest of the gallery to avoid repetition
   const galleryImages = project.images.filter((img) => img !== project.image);
+
+  // Notify parent component about details open/close state
+  useEffect(() => {
+    if (onDetailsToggle) {
+      onDetailsToggle(showDetails);
+    }
+  }, [showDetails, onDetailsToggle]);
 
   // Reset states when project changes
   useEffect(() => {

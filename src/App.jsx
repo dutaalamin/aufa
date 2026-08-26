@@ -18,10 +18,12 @@ export default function App() {
   const [showPreloader, setShowPreloader] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [is3DActive, setIs3DActive] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   // Smooth page transition handler for selecting projects
   const navigateToProject = React.useCallback((project) => {
     setIsTransitioning(true);
+    setIsDetailsOpen(false);
     if (window.lenis) window.lenis.stop();
 
     // After 400ms (when transition overlay is dark), swap content and scroll
@@ -45,6 +47,7 @@ export default function App() {
   // Smooth transition to 2D Home page deactivating 3D mode
   const goBackToHome = React.useCallback(() => {
     setIsTransitioning(true);
+    setIsDetailsOpen(false);
     if (window.lenis) window.lenis.stop();
 
     setTimeout(() => {
@@ -124,6 +127,7 @@ export default function App() {
   const handleNavigate = (id) => {
     // If in 3D mode, close it first
     if (is3DActive) setIs3DActive(false);
+    setIsDetailsOpen(false);
 
     if (selectedProject) {
       setSelectedProject(null);
@@ -193,7 +197,7 @@ export default function App() {
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20 z-0" />
 
       {/* Navigation */}
-      {!selectedProject && (
+      {(!selectedProject || (is3DActive && !isDetailsOpen)) && (
         <Navbar 
           onNavigate={handleNavigate} 
           is3DActive={is3DActive} 
@@ -210,6 +214,7 @@ export default function App() {
             <ProjectDetail3D 
               project={selectedProject} 
               onBack={() => navigateToProject(null)} 
+              onDetailsToggle={setIsDetailsOpen}
               onGoHome={goBackToHome}
               onSelectProject={navigateToProject}
             />
