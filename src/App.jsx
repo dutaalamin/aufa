@@ -148,7 +148,7 @@ export default function App() {
       {!selectedProject && !showPreloader && (
         <button
           onClick={() => setIs3DActive(!is3DActive)}
-          className="fixed top-12 left-1/2 -translate-x-1/2 z-40 px-5 py-2 rounded-full border border-white/20 hover:border-white/60 bg-black/10 backdrop-blur-md text-[10px] sm:text-xs font-display tracking-[0.25em] font-light text-white/80 hover:text-white uppercase transition-all duration-500 cursor-pointer pointer-events-auto shadow-md"
+          className="fixed top-12 left-1/2 -translate-x-1/2 z-50 px-5 py-2 rounded-full border border-white/20 hover:border-white/60 bg-black/10 backdrop-blur-md text-[10px] sm:text-xs font-display tracking-[0.25em] font-light text-white/80 hover:text-white uppercase transition-all duration-500 cursor-pointer pointer-events-auto shadow-md"
         >
           {is3DActive ? '[ Exit 3D Space ]' : '[ Enter 3D Space ]'}
         </button>
