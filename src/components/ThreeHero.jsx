@@ -59,8 +59,30 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   const onSelectProjectRef = useRef(onSelectProject);
   const targetCameraZRef = useRef(11.2);
 
+  const targetCameraPosRef = useRef(new THREE.Vector3(0, 0, 11.2));
+  const targetCameraLookRef = useRef(new THREE.Vector3(0, 0, 0));
+  const currentCameraLookRef = useRef(new THREE.Vector3(0, 0, 0));
+  const projectMeshesMapRef = useRef(new Map());
+
   useEffect(() => {
     selectedProjectRef.current = selectedProject;
+
+    if (selectedProject) {
+      const mesh = projectMeshesMapRef.current.get(selectedProject.id);
+      if (mesh) {
+        const worldPos = new THREE.Vector3();
+        mesh.getWorldPosition(worldPos);
+        
+        // Place camera 1.8 units away from the cube along the vector from origin
+        const targetPos = worldPos.clone().normalize().multiplyScalar(worldPos.length() + 1.8);
+        
+        targetCameraPosRef.current.copy(targetPos);
+        targetCameraLookRef.current.copy(worldPos);
+      }
+    } else {
+      targetCameraPosRef.current.set(0, 0, targetCameraZRef.current);
+      targetCameraLookRef.current.set(0, 0, 0);
+    }
   }, [selectedProject]);
 
   useEffect(() => {
@@ -116,7 +138,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
     // Track meshes for raycasting
     const raycastTargets = [];
-    const projectMeshesMap = new Map();
+    const projectMeshesMap = projectMeshesMapRef.current;
 
     CUBE_CONFIGS.forEach((config) => {
       // RESTORED: original position calculation with organic random noise offset
@@ -245,16 +267,28 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      // Smoothly interpolate camera position towards target camera Z (keep centered on X and Y)
-      camera.position.z += (targetCameraZRef.current - camera.position.z) * 0.08;
-
-      if (!isDragging) {
+      // Disable rotation increment when dragging or when selectedProject is active
+      if (!isDragging && !selectedProjectRef.current) {
         targetRotationY += 0.0025;
         targetRotationX += 0.0012;
       }
 
       cubeGroup.rotation.y += (targetRotationY - cubeGroup.rotation.y) * 0.15;
       cubeGroup.rotation.x += (targetRotationX - cubeGroup.rotation.x) * 0.15;
+
+      // Smoothly interpolate camera position and lookAt depending on state
+      if (selectedProjectRef.current) {
+        // Zoom camera in to face the selected project's cube
+        camera.position.lerp(targetCameraPosRef.current, 0.05);
+        currentCameraLookRef.current.lerp(targetCameraLookRef.current, 0.05);
+        camera.lookAt(currentCameraLookRef.current);
+      } else {
+        // Zoom camera back out to overview position centered on the origin
+        const homePos = new THREE.Vector3(0, 0, targetCameraZRef.current);
+        camera.position.lerp(homePos, 0.05);
+        currentCameraLookRef.current.lerp(new THREE.Vector3(0, 0, 0), 0.05);
+        camera.lookAt(currentCameraLookRef.current);
+      }
 
       // Disable raycasting if a project is selected
       if (selectedProjectRef.current) {
@@ -264,12 +298,6 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
           setHoveredProject(null);
           document.body.style.cursor = 'default';
         }
-        // Rotate extremely slowly in background when project is selected
-        targetRotationY += 0.00015;
-        targetRotationX += 0.00008;
-
-        cubeGroup.rotation.y += (targetRotationY - cubeGroup.rotation.y) * 0.09;
-        cubeGroup.rotation.x += (targetRotationX - cubeGroup.rotation.x) * 0.09;
 
         renderer.render(scene, camera);
         return;

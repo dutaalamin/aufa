@@ -22,8 +22,13 @@ export default function App() {
 
   // Smooth page transition handler for selecting projects
   const navigateToProject = React.useCallback((project) => {
-    setIsTransitioning(true);
     setIsDetailsOpen(false);
+    if (is3DActive) {
+      setSelectedProject(project);
+      return;
+    }
+
+    setIsTransitioning(true);
     if (window.lenis) window.lenis.stop();
 
     // After 400ms (when transition overlay is dark), swap content and scroll
