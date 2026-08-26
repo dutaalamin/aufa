@@ -73,8 +73,15 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
         const worldPos = new THREE.Vector3();
         mesh.getWorldPosition(worldPos);
         
-        // Place camera 1.8 units away from the cube along the vector from origin
-        const targetPos = worldPos.clone().normalize().multiplyScalar(worldPos.length() + 1.8);
+        const worldQuat = new THREE.Quaternion();
+        mesh.getWorldQuaternion(worldQuat);
+        
+        // Get the direction pointing out of the front face of the cube in world space
+        const localZ = new THREE.Vector3(0, 0, 1);
+        localZ.applyQuaternion(worldQuat);
+        
+        // Place camera exactly 0.7 units in front of the rotated cube face
+        const targetPos = worldPos.clone().add(localZ.multiplyScalar(0.7));
         
         targetCameraPosRef.current.copy(targetPos);
         targetCameraLookRef.current.copy(worldPos);
