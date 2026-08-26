@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search } from 'lucide-react';
 
-export default function Navbar({ onNavigate }) {
+export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selectedProject, showPreloader }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -58,26 +58,44 @@ export default function Navbar({ onNavigate }) {
           ? 'py-4 bg-charcoal-deep/90 backdrop-blur-md border-b border-white/5' 
           : 'py-6 bg-transparent border-b border-transparent'
       }`}>
-        <div className="w-full px-6 md:px-12 flex justify-between items-center">
+        <div className="w-full px-6 md:px-12 flex justify-between items-center relative">
           {/* Logo - Top Left */}
           <button 
             onClick={() => scrollTo('home')} 
-            className={`text-left font-display font-light tracking-mega text-white hover:text-white/80 transition-all duration-500 focus:outline-none cursor-pointer ${
+            className={`text-left font-display font-light tracking-mega transition-all duration-500 focus:outline-none cursor-pointer ${
+              is3DActive ? 'text-neutral-950 hover:text-neutral-700' : 'text-white hover:text-white/80'
+            } ${
               isScrolled ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
             }`}
           >
             A U F A
           </button>
 
+          {/* 3D Mode Toggle Button - Centered */}
+          {!selectedProject && !showPreloader && (
+            <button
+              onClick={() => setIs3DActive(!is3DActive)}
+              className={`absolute left-1/2 -translate-x-1/2 font-display text-[10px] sm:text-xs tracking-[0.25em] font-medium uppercase transition-all duration-500 cursor-pointer pointer-events-auto border-b py-0.5 ${
+                is3DActive
+                  ? 'border-neutral-900 text-neutral-900 hover:text-neutral-600 hover:border-neutral-600'
+                  : 'border-white/20 text-white/90 hover:text-white hover:border-white'
+              }`}
+            >
+              {is3DActive ? 'EXIT' : '3D'}
+            </button>
+          )}
+
           {/* Hamburger Menu Toggle - Top Right */}
           <button
             onClick={() => setIsOpen(true)}
-            className="p-2 text-white hover:text-slate-400 transition-colors focus:outline-none flex items-center justify-center group cursor-pointer"
+            className={`p-2 transition-colors focus:outline-none flex items-center justify-center group cursor-pointer ${
+              is3DActive ? 'text-neutral-950 hover:text-neutral-700' : 'text-white hover:text-slate-400'
+            }`}
           >
             <div className="flex flex-col gap-1.5 w-6 items-end">
-              <span className="h-[1px] bg-white w-6" />
-              <span className="h-[1px] bg-white w-4 group-hover:w-6 transition-all duration-300" />
-              <span className="h-[1px] bg-white w-2 group-hover:w-6 transition-all duration-300" />
+              <span className={`h-[1px] w-6 transition-colors duration-500 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
+              <span className={`h-[1px] w-4 group-hover:w-6 transition-all duration-300 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
+              <span className={`h-[1px] w-2 group-hover:w-6 transition-all duration-300 ${is3DActive ? 'bg-neutral-950' : 'bg-white'}`} />
             </div>
           </button>
         </div>

@@ -145,20 +145,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* 3D Mode Toggle Button */}
-      {!selectedProject && !showPreloader && (
-        <button
-          onClick={() => setIs3DActive(!is3DActive)}
-          className={`fixed top-12 left-1/2 -translate-x-1/2 z-50 px-5 py-2 rounded-full text-[10px] font-display tracking-[0.3em] font-medium uppercase transition-all duration-500 cursor-pointer pointer-events-auto shadow-sm ${
-            is3DActive
-              ? 'bg-neutral-950 text-white hover:bg-neutral-800 border border-neutral-900'
-              : 'bg-white/5 text-white/90 hover:bg-white hover:text-black border border-white/15'
-          }`}
-        >
-          {is3DActive ? 'EXIT' : '3D'}
-        </button>
-      )}
-
       {/* 0. PREMIUM PRELOADER INTRO SCREEN */}
       <AnimatePresence>
         {showPreloader && (
@@ -236,7 +222,13 @@ export default function App() {
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20 z-0" />
 
       {/* Navigation */}
-      <Navbar onNavigate={handleNavigate} />
+      <Navbar 
+        onNavigate={handleNavigate} 
+        is3DActive={is3DActive} 
+        setIs3DActive={setIs3DActive} 
+        selectedProject={selectedProject}
+        showPreloader={showPreloader}
+      />
 
       {/* Main Sections */}
       <main className="relative z-10">
