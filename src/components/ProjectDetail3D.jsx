@@ -81,39 +81,14 @@ export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGo
   return (
     <div className="w-full relative z-20 pointer-events-auto">
       
-      {/* 1. VIEWPORT HERO OVERLAY (SCREEN 1 - PREVIEW CARD) */}
+      {/* 1. VIEWPORT HERO OVERLAY (SCREEN 1 - PREVIEW OVERLAY) */}
       <section className="fixed inset-0 h-screen w-full flex items-end justify-between p-12 bg-transparent pointer-events-none z-10">
         
-        {/* Centered Large Square Image Link */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <motion.button
-            onClick={handleCardClick}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="w-[85vw] h-[85vw] sm:w-[450px] sm:h-[450px] md:w-[460px] md:h-[460px] bg-white border border-neutral-100 shadow-xl overflow-hidden pointer-events-auto cursor-pointer relative group text-left focus:outline-none"
-          >
-            <div className="absolute inset-0 bg-black/[0.02] group-hover:bg-transparent transition-colors duration-500 z-10" />
-            
-            {project.videoUrl ? (
-              <video
-                src={project.videoUrl}
-                poster={project.image}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover pointer-events-none group-hover:scale-104 transition-transform duration-700"
-              />
-            ) : (
-              <img
-                src={project.image}
-                alt={project.title}
-                className={`w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ${project.image.includes('together3.webp') ? 'scale-[1.35] group-hover:scale-[1.4]' : ''}`}
-              />
-            )}
-          </motion.button>
-        </div>
+        {/* Transparent Click Catcher - click anywhere to open details */}
+        <div 
+          onClick={handleCardClick}
+          className="absolute inset-0 cursor-pointer pointer-events-auto z-0"
+        />
 
         {/* Bottom Left Back Button */}
         <div className="absolute bottom-12 left-12 z-20 pointer-events-auto">
@@ -132,7 +107,7 @@ export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGo
             {project.title}
           </h2>
           <span className="font-display text-[9px] uppercase tracking-widest text-neutral-400 font-medium">
-            click image to see more
+            scroll up or swipe up to see more
           </span>
         </div>
 

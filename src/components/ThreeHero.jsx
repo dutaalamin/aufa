@@ -80,8 +80,8 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
         const localZ = new THREE.Vector3(0, 0, 1);
         localZ.applyQuaternion(worldQuat);
         
-        // Place camera exactly 0.7 units in front of the rotated cube face
-        const targetPos = worldPos.clone().add(localZ.multiplyScalar(0.7));
+        // Place camera exactly 1.95 units in front of the rotated cube face
+        const targetPos = worldPos.clone().add(localZ.multiplyScalar(1.95));
         
         targetCameraPosRef.current.copy(targetPos);
         targetCameraLookRef.current.copy(worldPos);
