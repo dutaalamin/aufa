@@ -415,10 +415,23 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
             className="absolute inset-0 bg-white flex flex-col items-center justify-center z-50"
           >
-            {/* Spinning wireframe box icon */}
-            <div className="relative w-12 h-12 flex items-center justify-center">
-              <div className="w-8 h-8 border border-neutral-900 absolute animate-[spin_4s_linear_infinite]" />
-              <div className="w-8 h-8 border border-neutral-900/20 absolute rotate-45 animate-[spin_6s_linear_infinite]" />
+            {/* True 3D CSS rotating cube (matching the navbar toggle button) */}
+            <div className="relative w-12 h-12 flex items-center justify-center group">
+              {/* Static '3D' text centered inside the rotating cube */}
+              <span className="absolute font-display text-[10px] sm:text-[11px] font-bold tracking-wider z-10 select-none text-neutral-950 pl-[1px]">
+                3D
+              </span>
+
+              {/* Rotating 3D Wireframe Cube */}
+              <div className="w-8 h-8 relative [transform-style:preserve-3d] animate-[spin-3d_12s_linear_infinite] pointer-events-none">
+                {/* Cube Faces with thin borders */}
+                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateZ(16px)]" />
+                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateZ(-16px)_rotateY(180deg)]" />
+                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateX(16px)_rotateY(90deg)]" />
+                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateX(-16px)_rotateY(-90deg)]" />
+                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateY(-16px)_rotateX(90deg)]" />
+                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateY(16px)_rotateX(-90deg)]" />
+              </div>
             </div>
             
             {/* Brand Title */}
