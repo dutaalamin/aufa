@@ -214,7 +214,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Page Transition Overlay (Minimal clean dip-to-black shutter) */}
+      {/* Page Transition Overlay (Theme-adaptive minimal shutter transition) */}
       <AnimatePresence>
         {isTransitioning && (
           <motion.div
@@ -225,7 +225,9 @@ export default function App() {
               opacity: 0,
               transition: { duration: 0.25 }
             }}
-            className="fixed inset-0 bg-charcoal-deep z-50 pointer-events-auto"
+            className={`fixed inset-0 z-50 pointer-events-auto ${
+              is3DActive ? 'bg-white' : 'bg-charcoal-deep'
+            }`}
           />
         )}
       </AnimatePresence>
