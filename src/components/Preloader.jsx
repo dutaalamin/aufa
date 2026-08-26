@@ -35,7 +35,7 @@ export default function Preloader({ onComplete }) {
           key="preloader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } }}
-          className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center pointer-events-auto select-none"
+          className="fixed inset-0 z-50 bg-charcoal-deep flex flex-col items-center justify-center pointer-events-auto select-none"
         >
           {/* Minimal Brand Monogram */}
           <motion.div
@@ -44,14 +44,14 @@ export default function Preloader({ onComplete }) {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="flex flex-col items-center gap-8"
           >
-            <h1 className="font-display font-light text-3xl sm:text-4xl tracking-[0.35em] text-neutral-950 uppercase">
+            <h1 className="font-display font-light text-3xl sm:text-4xl tracking-[0.35em] text-white uppercase">
               AUFA
             </h1>
 
             {/* Subtle Progress Bar */}
-            <div className="w-28 sm:w-36 h-[1.5px] bg-neutral-100 overflow-hidden relative rounded-full">
+            <div className="w-28 sm:w-36 h-[1.5px] bg-white/10 overflow-hidden relative rounded-full">
               <motion.div
-                className="h-full bg-neutral-900 rounded-full"
+                className="h-full bg-white rounded-full"
                 style={{ width: `${progress}%` }}
                 transition={{ ease: 'easeOut' }}
               />

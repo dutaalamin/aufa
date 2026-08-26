@@ -11,6 +11,7 @@ import ProjectDetail3D from './components/ProjectDetail3D';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThreeHero from './components/ThreeHero';
+import Preloader from './components/Preloader';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -146,59 +147,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* 0. PREMIUM PRELOADER INTRO SCREEN */}
-      <AnimatePresence>
-        {showPreloader && (
-          <motion.div
-            key="preloader"
-            initial={{ opacity: 1 }}
-            exit={{ 
-              opacity: 0,
-              transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
-            }}
-            className="fixed inset-0 bg-charcoal-deep z-50 flex flex-col items-center justify-center pointer-events-auto"
-          >
-            {/* Architectural Grid Lines Overlay */}
-            <div className="absolute inset-0 bg-grid-lines pointer-events-none opacity-15" />
-            <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20" />
-            
-            <div className="relative flex flex-col items-center gap-6 overflow-hidden">
-              {/* Expanding Logo Letter-Spacing Animation (Snappy & Fast) */}
-              <motion.div
-                initial={{ letterSpacing: "0.2em", opacity: 0 }}
-                animate={{ 
-                  letterSpacing: "0.8em", 
-                  opacity: 1,
-                  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-                }}
-                exit={{ 
-                  scale: 0.98,
-                  opacity: 0,
-                  transition: { duration: 0.3, ease: "easeIn" }
-                }}
-                className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-white select-none text-center pl-[0.8em]"
-              >
-                AUFA
-              </motion.div>
-              
-              {/* Sleek Minimalist Linear Progress Bar */}
-              <div className="w-20 sm:w-28 h-[1px] bg-white/10 overflow-hidden relative mt-1">
-                <motion.div 
-                  initial={{ left: "-100%" }}
-                  animate={{ 
-                    left: "100%",
-                    transition: { 
-                      duration: 1.8, 
-                      ease: "easeInOut",
-                      repeat: Infinity
-                    }
-                  }}
-                  className="absolute top-0 bottom-0 w-1/2 bg-white"
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {showPreloader && <Preloader onComplete={() => setShowPreloader(false)} />}
 
       {/* Page Transition Overlay (Theme-adaptive minimal shutter transition) */}
       <AnimatePresence>
