@@ -9,14 +9,16 @@ import Projects from './components/Projects';
 import ProjectDetail from './components/ProjectDetail';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ThreeHero from './components/ThreeHero';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showPreloader, setShowPreloader] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [is3DActive, setIs3DActive] = useState(false);
 
   // Smooth page transition handler for selecting projects
-  const navigateToProject = (project) => {
+  const navigateToProject = React.useCallback((project) => {
     setIsTransitioning(true);
     if (window.lenis) window.lenis.stop();
 
@@ -33,10 +35,10 @@ export default function App() {
       // Short buffer before fading transition screen out
       setTimeout(() => {
         setIsTransitioning(false);
-        if (window.lenis) window.lenis.start();
+        if (window.lenis && !is3DActive) window.lenis.start();
       }, 150);
     }, 400);
-  };
+  }, [is3DActive]);
 
   // Initialize Lenis Smooth Scroll
   useEffect(() => {
@@ -81,9 +83,9 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Prevent background scrolling when preloader is active
+  // Prevent background scrolling when preloader, selected project, or 3D mode is active
   useEffect(() => {
-    if (showPreloader) {
+    if (showPreloader || is3DActive || selectedProject) {
       document.body.style.overflow = 'hidden';
       if (window.lenis) window.lenis.stop();
     } else {
@@ -93,9 +95,12 @@ export default function App() {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [showPreloader]);
+  }, [showPreloader, is3DActive, selectedProject]);
 
   const handleNavigate = (id) => {
+    // If in 3D mode, close it first
+    if (is3DActive) setIs3DActive(false);
+
     if (selectedProject) {
       setSelectedProject(null);
       // Wait for Home components to mount, then scroll
@@ -124,6 +129,31 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-charcoal-deep text-slate-100 selection:bg-white selection:text-black overflow-x-clip font-sans">
       
+      {/* 3D Canvas Background Layer */}
+      <AnimatePresence>
+        {is3DActive && !selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            className="fixed inset-0 z-0 bg-white"
+          >
+            <ThreeHero onSelectProject={navigateToProject} selectedProject={selectedProject} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 3D Mode Toggle Button */}
+      {!selectedProject && !showPreloader && (
+        <button
+          onClick={() => setIs3DActive(!is3DActive)}
+          className="fixed top-12 left-1/2 -translate-x-1/2 z-40 px-5 py-2 rounded-full border border-white/20 hover:border-white/60 bg-black/10 backdrop-blur-md text-[10px] sm:text-xs font-display tracking-[0.25em] font-light text-white/80 hover:text-white uppercase transition-all duration-500 cursor-pointer pointer-events-auto shadow-md"
+        >
+          {is3DActive ? '[ Exit 3D Space ]' : '[ Enter 3D Space ]'}
+        </button>
+      )}
+
       {/* 0. PREMIUM PRELOADER INTRO SCREEN */}
       <AnimatePresence>
         {showPreloader && (
@@ -211,17 +241,23 @@ export default function App() {
           />
         ) : (
           <>
-            <Hero onSelectProject={navigateToProject} />
-            <AboutStatement />
-            <About />
-            <Projects onSelectProject={navigateToProject} />
-            <Contact />
+            {is3DActive ? (
+              // Empty space placeholder to let ThreeHero canvas shine below
+              <div className="h-screen w-full" />
+            ) : (
+              <>
+                <Hero onSelectProject={navigateToProject} />
+                <AboutStatement />
+                <About />
+                <Projects onSelectProject={navigateToProject} />
+                <Contact />
+                <Footer />
+              </>
+            )}
           </>
         )}
       </main>
 
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
