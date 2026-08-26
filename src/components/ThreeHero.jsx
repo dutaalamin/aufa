@@ -349,9 +349,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
       {/* 3D Canvas Mounting Point */}
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
-      {/* Floating Blueprint Grids Overlay (Subtle) */}
-      <div className="absolute inset-0 bg-grid-lines-dark pointer-events-none opacity-[0.8] z-10" />
-      <div className="absolute inset-0 bg-grid-lines-fine-dark pointer-events-none opacity-[0.8] z-10" />
+
 
       {/* Top Left Branding */}
       <div className="absolute top-12 left-12 z-20 pointer-events-auto">
