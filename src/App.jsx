@@ -132,7 +132,7 @@ export default function App() {
       
       {/* 3D Canvas Background Layer */}
       <AnimatePresence>
-        {is3DActive && !selectedProject && (
+        {is3DActive && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
