@@ -84,37 +84,34 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
                   setShow3DHint(false);
                 }}
                 className="relative w-12 h-12 flex items-center justify-center bg-transparent border-0 cursor-pointer group focus:outline-none pointer-events-auto"
-                aria-label="Toggle 3D Mode"
+                aria-label={is3DActive ? "Exit 3D Mode" : "Enter 3D Mode"}
               >
-                {/* Static '3D' text centered inside the rotating cube */}
-                <span className={`absolute font-display text-[10px] sm:text-[11px] font-bold tracking-wider z-10 select-none transition-colors duration-500 ${
-                  is3DActive ? 'text-neutral-950' : 'text-white'
-                }`}>
-                  3D
-                </span>
+                {is3DActive ? (
+                  /* Flat 2D square box containing the word 'EXIT' */
+                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-950 bg-transparent group-hover:bg-neutral-950 transition-colors duration-300">
+                    <span className="font-display text-[8px] font-bold tracking-widest text-neutral-950 group-hover:text-white transition-colors duration-300 pl-[1px] select-none">
+                      EXIT
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    {/* Static '3D' text centered inside the rotating cube */}
+                    <span className="absolute font-display text-[10px] sm:text-[11px] font-bold tracking-wider z-10 select-none text-white">
+                      3D
+                    </span>
 
-                {/* Rotating 3D Wireframe Cube */}
-                <div className="w-8 h-8 relative [transform-style:preserve-3d] animate-[spin-3d_12s_linear_infinite] pointer-events-none">
-                  {/* Cube Faces with thin borders */}
-                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateZ(16px)] ${
-                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
-                  }`} />
-                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateZ(-16px)_rotateY(180deg)] ${
-                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
-                  }`} />
-                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateX(16px)_rotateY(90deg)] ${
-                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
-                  }`} />
-                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateX(-16px)_rotateY(-90deg)] ${
-                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
-                  }`} />
-                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateY(-16px)_rotateX(90deg)] ${
-                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
-                  }`} />
-                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateY(16px)_rotateX(-90deg)] ${
-                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
-                  }`} />
-                </div>
+                    {/* Rotating 3D Wireframe Cube */}
+                    <div className="w-8 h-8 relative [transform-style:preserve-3d] animate-[spin-3d_12s_linear_infinite] pointer-events-none">
+                      {/* Cube Faces with thin borders */}
+                      <div className="absolute inset-0 border border-white/20 group-hover:border-white/50 transition-colors duration-500 [transform:translateZ(16px)]" />
+                      <div className="absolute inset-0 border border-white/20 group-hover:border-white/50 transition-colors duration-500 [transform:translateZ(-16px)_rotateY(180deg)]" />
+                      <div className="absolute inset-0 border border-white/20 group-hover:border-white/50 transition-colors duration-500 [transform:translateX(16px)_rotateY(90deg)]" />
+                      <div className="absolute inset-0 border border-white/20 group-hover:border-white/50 transition-colors duration-500 [transform:translateX(-16px)_rotateY(-90deg)]" />
+                      <div className="absolute inset-0 border border-white/20 group-hover:border-white/50 transition-colors duration-500 [transform:translateY(-16px)_rotateX(90deg)]" />
+                      <div className="absolute inset-0 border border-white/20 group-hover:border-white/50 transition-colors duration-500 [transform:translateY(16px)_rotateX(-90deg)]" />
+                    </div>
+                  </>
+                )}
               </button>
 
               {/* Elegant floating tooltip hint on first load */}
