@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
-import ThreeHero from './components/ThreeHero';
+import Hero from './components/Hero';
 import AboutStatement from './components/AboutStatement';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -211,7 +211,7 @@ export default function App() {
           />
         ) : (
           <>
-            <ThreeHero onSelectProject={navigateToProject} />
+            <Hero onSelectProject={navigateToProject} />
             <AboutStatement />
             <About />
             <Projects onSelectProject={navigateToProject} />
