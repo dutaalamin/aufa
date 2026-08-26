@@ -65,7 +65,13 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
         <div className="w-full px-6 md:px-12 flex justify-between items-center relative">
           {/* Logo - Top Left */}
           <button 
-            onClick={() => scrollTo('home')} 
+            onClick={() => {
+              if (is3DActive) {
+                if (onNavigate) onNavigate('3d-home');
+              } else {
+                scrollTo('home');
+              }
+            }} 
             className={`text-left font-display font-light tracking-mega transition-all duration-500 focus:outline-none cursor-pointer ${
               is3DActive ? 'text-neutral-950 hover:text-neutral-700' : 'text-white hover:text-white/80'
             } ${

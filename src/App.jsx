@@ -125,6 +125,13 @@ export default function App() {
   }, [showPreloader, is3DActive, selectedProject]);
 
   const handleNavigate = (id) => {
+    // If id is '3d-home', stay in 3D mode but return to the 3D home matrix
+    if (id === '3d-home') {
+      setIsDetailsOpen(false);
+      navigateToProject(null);
+      return;
+    }
+
     // If in 3D mode, close it first
     if (is3DActive) setIs3DActive(false);
     setIsDetailsOpen(false);
