@@ -421,10 +421,10 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
               <div className="w-8 h-8 border border-neutral-900/20 absolute rotate-45 animate-[spin_6s_linear_infinite]" />
             </div>
             
-            {/* Minimal monospace style loading label */}
-            <span className="font-display text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-neutral-500 font-semibold mt-8 animate-pulse select-none">
-              Initializing 3D Archive
-            </span>
+            {/* Brand Title */}
+            <h3 className="font-display font-light tracking-mega text-xl sm:text-2xl text-neutral-900 uppercase mt-6 select-none pl-[0.35em]">
+              A U F A
+            </h3>
           </motion.div>
         )}
       </AnimatePresence>
