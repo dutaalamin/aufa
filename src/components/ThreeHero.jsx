@@ -142,21 +142,39 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
     // --- 5. Textures ---
     let isMounted = true;
+    let isThreeLoaded = false;
+    let simulatedProgress = 0;
+
     const loadingManager = new THREE.LoadingManager();
-    loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
-      if (isMounted) {
-        const calculated = Math.round((itemsLoaded / itemsTotal) * 100);
-        setLoadingProgress(calculated);
-      }
-    };
     loadingManager.onLoad = () => {
-      if (isMounted) {
+      isThreeLoaded = true;
+      if (isMounted && simulatedProgress >= 100) {
         setTimeout(() => {
           if (isMounted) setIsLoading(false);
-        }, 300);
+        }, 200);
       }
     };
     const textureLoader = new THREE.TextureLoader(loadingManager);
+
+    // Simulate organic progress in parallel, matching the main preloader speed (~1.2s)
+    const progressInterval = setInterval(() => {
+      setLoadingProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          simulatedProgress = 100;
+          if (isMounted && isThreeLoaded) {
+            setTimeout(() => {
+              if (isMounted) setIsLoading(false);
+            }, 200);
+          }
+          return 100;
+        }
+        const increment = Math.floor(Math.random() * 12) + 5;
+        const next = Math.min(prev + increment, 100);
+        simulatedProgress = next;
+        return next;
+      });
+    }, 45);
 
     // --- 6. Cube Group & Meshes Generation ---
     const cubeGroup = new THREE.Group();
@@ -388,6 +406,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      clearInterval(progressInterval);
       container.removeEventListener('pointerdown', handlePointerDown);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerup', handlePointerUp);
