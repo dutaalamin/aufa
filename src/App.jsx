@@ -171,13 +171,15 @@ export default function App() {
       <div className="absolute inset-0 bg-grid-lines-fine pointer-events-none opacity-20 z-0" />
 
       {/* Navigation */}
-      <Navbar 
-        onNavigate={handleNavigate} 
-        is3DActive={is3DActive} 
-        setIs3DActive={setIs3DActive} 
-        selectedProject={selectedProject}
-        showPreloader={showPreloader}
-      />
+      {!selectedProject && (
+        <Navbar 
+          onNavigate={handleNavigate} 
+          is3DActive={is3DActive} 
+          setIs3DActive={setIs3DActive} 
+          selectedProject={selectedProject}
+          showPreloader={showPreloader}
+        />
+      )}
 
       {/* Main Sections */}
       <main className="relative z-10">
