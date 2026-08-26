@@ -56,6 +56,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   const selectedProjectRef = useRef(selectedProject);
   const onSelectProjectRef = useRef(onSelectProject);
@@ -142,6 +143,12 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
     // --- 5. Textures ---
     let isMounted = true;
     const loadingManager = new THREE.LoadingManager();
+    loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+      if (isMounted) {
+        const calculated = Math.round((itemsLoaded / itemsTotal) * 100);
+        setLoadingProgress(calculated);
+      }
+    };
     loadingManager.onLoad = () => {
       if (isMounted) {
         setTimeout(() => {
@@ -413,31 +420,27 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="absolute inset-0 bg-white flex flex-col items-center justify-center z-50"
+            className="absolute inset-0 bg-white flex flex-col items-center justify-center z-50 pointer-events-auto select-none"
           >
-            {/* True 3D CSS rotating cube (matching the navbar toggle button) */}
-            <div className="relative w-12 h-12 flex items-center justify-center group">
-              {/* Static '3D' text centered inside the rotating cube */}
-              <span className="absolute font-display text-[10px] sm:text-[11px] font-bold tracking-wider z-10 select-none text-neutral-950 pl-[1px]">
-                3D
-              </span>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="flex flex-col items-center gap-8"
+            >
+              <h1 className="font-display font-light text-3xl sm:text-4xl tracking-[0.35em] text-neutral-900 uppercase pl-[0.35em]">
+                AUFA
+              </h1>
 
-              {/* Rotating 3D Wireframe Cube */}
-              <div className="w-8 h-8 relative [transform-style:preserve-3d] animate-[spin-3d_12s_linear_infinite] pointer-events-none">
-                {/* Cube Faces with thin borders */}
-                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateZ(16px)]" />
-                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateZ(-16px)_rotateY(180deg)]" />
-                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateX(16px)_rotateY(90deg)]" />
-                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateX(-16px)_rotateY(-90deg)]" />
-                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateY(-16px)_rotateX(90deg)]" />
-                <div className="absolute inset-0 border border-neutral-950/15 [transform:translateY(16px)_rotateX(-90deg)]" />
+              {/* Subtle Progress Bar */}
+              <div className="w-28 sm:w-36 h-[1.5px] bg-neutral-900/10 overflow-hidden relative rounded-full">
+                <motion.div
+                  className="h-full bg-neutral-900 rounded-full"
+                  style={{ width: `${loadingProgress}%` }}
+                  transition={{ ease: 'easeOut' }}
+                />
               </div>
-            </div>
-            
-            {/* Brand Title */}
-            <h3 className="font-display font-light tracking-mega text-xl sm:text-2xl text-neutral-900 uppercase mt-6 select-none pl-[0.35em]">
-              A U F A
-            </h3>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
