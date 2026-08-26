@@ -1,6 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search } from 'lucide-react';
+
+const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&()_+?><';
+
+function useTextScramble(text) {
+  const [displayText, setDisplayText] = useState(text);
+  const intervalRef = useRef(null);
+
+  const startScramble = useCallback(() => {
+    clearInterval(intervalRef.current);
+    let iteration = 0;
+    
+    intervalRef.current = setInterval(() => {
+      setDisplayText(
+        text
+          .split("")
+          .map((char, index) => {
+            if (char === " ") return " ";
+            if (index < iteration) {
+              return text[index];
+            }
+            return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+          })
+          .join("")
+      );
+
+      if (iteration >= text.length) {
+        clearInterval(intervalRef.current);
+        setDisplayText(text);
+      }
+      
+      iteration += 1 / 3;
+    }, 25);
+  }, [text]);
+
+  const stopScramble = useCallback(() => {
+    clearInterval(intervalRef.current);
+    setDisplayText(text);
+  }, [text]);
+
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  return [displayText, startScramble, stopScramble];
+}
+
+function LogoLink({ isScrolled, onClick }) {
+  const [displayText, startScramble, stopScramble] = useTextScramble("A U F A");
+
+  return (
+    <button 
+      onClick={onClick}
+      onMouseEnter={startScramble}
+      onMouseLeave={stopScramble}
+      className={`text-left font-display font-light tracking-mega text-white hover:text-white/80 transition-all duration-500 focus:outline-none cursor-pointer ${
+        isScrolled ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
+      }`}
+    >
+      {displayText}
+    </button>
+  );
+}
+
+function NavLink({ item, onClick }) {
+  const [displayText, startScramble, stopScramble] = useTextScramble(item.label);
+
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={startScramble}
+      onMouseLeave={stopScramble}
+      className="font-sans text-xl sm:text-[22px] font-light text-neutral-900 hover:text-neutral-900/60 transition-all duration-300 focus:outline-none w-full text-left flex justify-between items-center group cursor-pointer"
+    >
+      <span>{displayText}</span>
+    </button>
+  );
+}
 
 export default function Navbar({ onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,14 +137,7 @@ export default function Navbar({ onNavigate }) {
       }`}>
         <div className="w-full px-6 md:px-12 flex justify-between items-center">
           {/* Logo - Top Left */}
-          <button 
-            onClick={() => scrollTo('home')} 
-            className={`text-left font-display font-light tracking-mega text-white hover:text-white/80 transition-all duration-500 focus:outline-none cursor-pointer ${
-              isScrolled ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
-            }`}
-          >
-            A U F A
-          </button>
+          <LogoLink isScrolled={isScrolled} onClick={() => scrollTo('home')} />
 
           {/* Hamburger Menu Toggle - Top Right */}
           <button
@@ -123,14 +193,12 @@ export default function Navbar({ onNavigate }) {
 
               {/* Drawer Navigation Links */}
               <div className="flex flex-col items-start space-y-6 mt-6 md:mt-8 mb-auto pl-4 select-none">
-                {navItems.map((item, idx) => (
-                  <button
+                {navItems.map((item) => (
+                  <NavLink
                     key={item.id}
+                    item={item}
                     onClick={() => scrollTo(item.id)}
-                    className="font-sans text-xl sm:text-[22px] font-light text-neutral-900 hover:text-neutral-900/60 transition-all duration-300 focus:outline-none w-full text-left flex justify-between items-center group cursor-pointer"
-                  >
-                    <span>{item.label}</span>
-                  </button>
+                  />
                 ))}
               </div>
 
