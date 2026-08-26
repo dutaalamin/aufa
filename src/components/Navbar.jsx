@@ -87,7 +87,7 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
                 aria-label="Toggle 3D Mode"
               >
                 {/* Static '3D' text centered inside the rotating cube */}
-                <span className={`absolute font-display text-[9px] font-semibold tracking-wider z-10 select-none transition-colors duration-500 ${
+                <span className={`absolute font-display text-[10px] sm:text-[11px] font-bold tracking-wider z-10 select-none transition-colors duration-500 ${
                   is3DActive ? 'text-neutral-950' : 'text-white'
                 }`}>
                   3D
