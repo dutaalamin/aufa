@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { motion, AnimatePresence } from 'framer-motion';
 import { projectsData } from './Projects';
 
 // Define a structured 3D matrix coordinate configuration for the floating cubes.
@@ -54,6 +55,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   const mountRef = useRef(null);
   const [hoveredProject, setHoveredProject] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [isLoading, setIsLoading] = useState(true);
 
   const selectedProjectRef = useRef(selectedProject);
   const onSelectProjectRef = useRef(onSelectProject);
@@ -138,7 +140,16 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
     scene.add(directionalLight);
 
     // --- 5. Textures ---
-    const textureLoader = new THREE.TextureLoader();
+    let isMounted = true;
+    const loadingManager = new THREE.LoadingManager();
+    loadingManager.onLoad = () => {
+      if (isMounted) {
+        setTimeout(() => {
+          if (isMounted) setIsLoading(false);
+        }, 300);
+      }
+    };
+    const textureLoader = new THREE.TextureLoader(loadingManager);
 
     // --- 6. Cube Group & Meshes Generation ---
     const cubeGroup = new THREE.Group();
@@ -376,7 +387,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
       container.removeEventListener('click', handleClick);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('wheel', handleWheelZoom);
-      
+      isMounted = false;
       if (renderer && renderer.domElement) {
         container.removeChild(renderer.domElement);
       }
@@ -395,11 +406,28 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
       {/* 3D Canvas Mounting Point */}
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
-
-
-
-
-
+      {/* Modern minimal loading overlay */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            className="absolute inset-0 bg-white flex flex-col items-center justify-center z-50"
+          >
+            {/* Spinning wireframe box icon */}
+            <div className="relative w-12 h-12 flex items-center justify-center">
+              <div className="w-8 h-8 border border-neutral-900 absolute animate-[spin_4s_linear_infinite]" />
+              <div className="w-8 h-8 border border-neutral-900/20 absolute rotate-45 animate-[spin_6s_linear_infinite]" />
+            </div>
+            
+            {/* Minimal monospace style loading label */}
+            <span className="font-display text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-neutral-500 font-semibold mt-8 animate-pulse select-none">
+              Initializing 3D Archive
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Floating Tooltip Indicator - Dark premium tooltip on light theme */}
       {hoveredProject && !selectedProject && (
