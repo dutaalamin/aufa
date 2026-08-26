@@ -7,6 +7,7 @@ import AboutStatement from './components/AboutStatement';
 import About from './components/About';
 import Projects from './components/Projects';
 import ProjectDetail from './components/ProjectDetail';
+import ProjectDetail3D from './components/ProjectDetail3D';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThreeHero from './components/ThreeHero';
@@ -238,11 +239,19 @@ export default function App() {
       {/* Main Sections */}
       <main className="relative z-10">
         {selectedProject ? (
-          <ProjectDetail 
-            project={selectedProject} 
-            onBack={() => navigateToProject(null)} 
-            onSelectProject={navigateToProject}
-          />
+          is3DActive ? (
+            <ProjectDetail3D 
+              project={selectedProject} 
+              onBack={() => navigateToProject(null)} 
+              onSelectProject={navigateToProject}
+            />
+          ) : (
+            <ProjectDetail 
+              project={selectedProject} 
+              onBack={() => navigateToProject(null)} 
+              onSelectProject={navigateToProject}
+            />
+          )
         ) : (
           <>
             {is3DActive ? (
