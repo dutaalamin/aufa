@@ -84,11 +84,17 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
         targetRotationXRef.current = targetX;
         
         // Since the group aligns flat with the world axes, the camera simply glides 1.95 units
-        // along the Z-axis in front of the cube's original local position
+        // Place camera exactly 1.95 units in Z in front of the local position
         const targetPos = new THREE.Vector3(localPos.x, localPos.y, localPos.z + 1.95);
         
-        // The camera target rotation is identity (perfectly flat, upright)
-        const targetQuat = new THREE.Quaternion(); // identity (0, 0, 0, 1)
+        // Offset target lookAt slightly downwards (0.15 units) to tilt camera down
+        // and push the cube face upwards on the screen (preventing text overlap)
+        const targetLookAt = new THREE.Vector3(localPos.x, localPos.y - 0.15, localPos.z);
+        
+        // Calculate the target rotation matrix and quaternion
+        const tempMatrix = new THREE.Matrix4();
+        tempMatrix.lookAt(targetPos, targetLookAt, new THREE.Vector3(0, 1, 0));
+        const targetQuat = new THREE.Quaternion().setFromRotationMatrix(tempMatrix);
         
         targetCameraPosRef.current.copy(targetPos);
         targetCameraQuatRef.current.copy(targetQuat);
