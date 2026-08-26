@@ -83,19 +83,38 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
                   setIs3DActive(!is3DActive);
                   setShow3DHint(false);
                 }}
-                className={`font-display text-[10px] sm:text-xs tracking-[0.25em] font-medium uppercase transition-all duration-500 cursor-pointer pointer-events-auto border-b py-0.5 flex items-center gap-1.5 ${
-                  is3DActive
-                    ? 'border-neutral-900 text-neutral-900 hover:text-neutral-600 hover:border-neutral-600'
-                    : 'border-white/20 text-white/90 hover:text-white hover:border-white'
-                }`}
+                className="relative w-12 h-12 flex items-center justify-center bg-transparent border-0 cursor-pointer group focus:outline-none pointer-events-auto"
+                aria-label="Toggle 3D Mode"
               >
-                {!is3DActive && (
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
-                  </span>
-                )}
-                {is3DActive ? 'EXIT' : '3D'}
+                {/* Static '3D' text centered inside the rotating cube */}
+                <span className={`absolute font-display text-[9px] font-semibold tracking-wider z-10 select-none transition-colors duration-500 ${
+                  is3DActive ? 'text-neutral-950' : 'text-white'
+                }`}>
+                  3D
+                </span>
+
+                {/* Rotating 3D Wireframe Cube */}
+                <div className="w-8 h-8 relative [transform-style:preserve-3d] animate-[spin-3d_12s_linear_infinite] pointer-events-none">
+                  {/* Cube Faces with thin borders */}
+                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateZ(16px)] ${
+                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
+                  }`} />
+                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateZ(-16px)_rotateY(180deg)] ${
+                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
+                  }`} />
+                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateX(16px)_rotateY(90deg)] ${
+                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
+                  }`} />
+                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateX(-16px)_rotateY(-90deg)] ${
+                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
+                  }`} />
+                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateY(-16px)_rotateX(90deg)] ${
+                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
+                  }`} />
+                  <div className={`absolute inset-0 border transition-colors duration-500 [transform:translateY(16px)_rotateX(-90deg)] ${
+                    is3DActive ? 'border-neutral-950/30' : 'border-white/20 group-hover:border-white/50'
+                  }`} />
+                </div>
               </button>
 
               {/* Elegant floating tooltip hint on first load */}
