@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 
-export default function ProjectDetail3D({ project, onBack, onSelectProject }) {
+export default function ProjectDetail3D({ project, onBack, onGoHome, onSelectProject }) {
   if (!project) return null;
 
   const [showDetails, setShowDetails] = useState(false);
@@ -134,7 +134,7 @@ export default function ProjectDetail3D({ project, onBack, onSelectProject }) {
         {/* Sticky Top Header (<- Title) */}
         <div className="sticky top-0 bg-white/95 backdrop-blur-md z-30 py-4 px-6 md:px-12 border-b border-neutral-100 flex items-center">
           <button
-            onClick={() => setShowDetails(false)}
+            onClick={onGoHome}
             className="hover:text-neutral-500 transition-colors cursor-pointer focus:outline-none flex items-center gap-3 font-display text-sm font-medium uppercase tracking-widest text-neutral-900"
           >
             <span className="w-5 h-5 rounded-full border border-neutral-300 flex items-center justify-center text-[10px]">

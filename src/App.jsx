@@ -42,6 +42,28 @@ export default function App() {
     }, 400);
   }, [is3DActive]);
 
+  // Smooth transition to 2D Home page deactivating 3D mode
+  const goBackToHome = React.useCallback(() => {
+    setIsTransitioning(true);
+    if (window.lenis) window.lenis.stop();
+
+    setTimeout(() => {
+      setIs3DActive(false);
+      setSelectedProject(null);
+
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      setTimeout(() => {
+        setIsTransitioning(false);
+        if (window.lenis) window.lenis.start();
+      }, 150);
+    }, 400);
+  }, []);
+
   // Initialize Lenis Smooth Scroll
   useEffect(() => {
     if (showPreloader) return;
@@ -188,6 +210,7 @@ export default function App() {
             <ProjectDetail3D 
               project={selectedProject} 
               onBack={() => navigateToProject(null)} 
+              onGoHome={goBackToHome}
               onSelectProject={navigateToProject}
             />
           ) : (
