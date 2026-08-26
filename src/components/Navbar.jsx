@@ -5,7 +5,6 @@ import { X, Search } from 'lucide-react';
 export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selectedProject, showPreloader }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [show3DHint, setShow3DHint] = useState(true);
 
   const navItems = [
     { label: 'About Us', id: 'about', hasSub: true },
@@ -17,9 +16,6 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > window.innerHeight * 0.85);
-      if (window.scrollY > 80) {
-        setShow3DHint(false);
-      }
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll);
@@ -87,7 +83,6 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
               <button
                 onClick={() => {
                   setIs3DActive(!is3DActive);
-                  setShow3DHint(false);
                 }}
                 className="relative w-12 h-12 flex items-center justify-center bg-transparent border-0 cursor-pointer group focus:outline-none pointer-events-auto"
                 aria-label={is3DActive ? "Exit 3D Mode" : "Enter 3D Mode"}
@@ -119,27 +114,6 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
                   </>
                 )}
               </button>
-
-              {/* Elegant floating tooltip hint on first load */}
-              {show3DHint && !is3DActive && (
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: 1.5, duration: 0.6, ease: 'easeOut' }}
-                  className="absolute top-full mt-4 w-52 bg-white text-black p-3.5 shadow-2xl text-center pointer-events-none border border-neutral-100/30 flex flex-col items-center gap-1"
-                >
-                  {/* Triangle pointing up to the 3D button */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[6px] border-b-white" />
-                  
-                  <span className="font-display text-[9px] uppercase tracking-[0.2em] font-semibold text-neutral-900 block leading-tight">
-                    Interactive Mode
-                  </span>
-                  <span className="font-sans text-[10px] text-neutral-500 font-light leading-normal block">
-                    Click here to explore our project archive in a 3D environment.
-                  </span>
-                </motion.div>
-              )}
             </div>
           )}
 
