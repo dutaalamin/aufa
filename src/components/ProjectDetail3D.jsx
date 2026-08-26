@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 
 export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGoHome, onSelectProject }) {
   if (!project) return null;
@@ -17,19 +18,18 @@ export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGo
     }
   }, [showDetails, onDetailsToggle]);
 
-  // Reset states and trigger auto-open timer when project changes to match the 3D camera zoom transition
+  // Reset states when project changes
   useEffect(() => {
     setShowDetails(false);
     if (detailsScrollRef.current) {
       detailsScrollRef.current.scrollTop = 0;
     }
-
-    const timer = setTimeout(() => {
-      setShowDetails(true);
-    }, 800);
-
-    return () => clearTimeout(timer);
   }, [project]);
+
+  // Click handler on centered card image to open the project details page
+  const handleCardClick = () => {
+    setShowDetails(true);
+  };
 
   // Handle back click with smooth slide-down exit transition
   const handleBack = (e) => {
@@ -40,8 +40,103 @@ export default function ProjectDetail3D({ project, onBack, onDetailsToggle, onGo
     }, 700);
   };
 
+  // Listen for scroll down or swipe up gestures on Screen 1 (Preview) to open details page
+  useEffect(() => {
+    if (showDetails) return;
+
+    let touchStartY = 0;
+
+    const handleWheel = (e) => {
+      if (e.deltaY > 0) {
+        setShowDetails(true);
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!touchStartY) return;
+      const touchEndY = e.touches[0].clientY;
+      const diffY = touchStartY - touchEndY; // positive = swipe up (scroll down)
+
+      if (diffY > 15) {
+        touchStartY = 0;
+        setShowDetails(true);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [showDetails, project]);
+
   return (
     <div className="w-full relative z-20 pointer-events-auto">
+      
+      {/* 1. VIEWPORT HERO OVERLAY (SCREEN 1 - PREVIEW CARD) */}
+      <section className="fixed inset-0 h-screen w-full flex items-end justify-between p-12 bg-transparent pointer-events-none z-10">
+        
+        {/* Centered Large Square Image Link */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+          <motion.button
+            onClick={handleCardClick}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            className="w-[85vw] h-[85vw] sm:w-[450px] sm:h-[450px] md:w-[460px] md:h-[460px] bg-white border border-neutral-100 shadow-xl overflow-hidden pointer-events-auto cursor-pointer relative group text-left focus:outline-none"
+          >
+            <div className="absolute inset-0 bg-black/[0.02] group-hover:bg-transparent transition-colors duration-500 z-10" />
+            
+            {project.videoUrl ? (
+              <video
+                src={project.videoUrl}
+                poster={project.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover pointer-events-none group-hover:scale-104 transition-transform duration-700"
+              />
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                className={`w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ${project.image.includes('together3.webp') ? 'scale-[1.35] group-hover:scale-[1.4]' : ''}`}
+              />
+            )}
+          </motion.button>
+        </div>
+
+        {/* Bottom Left Back Button */}
+        <div className="absolute bottom-12 left-12 z-20 pointer-events-auto">
+          <button
+            onClick={onBack}
+            className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-900 bg-white hover:bg-neutral-50 hover:border-neutral-400 active:scale-95 transition-all duration-300 cursor-pointer focus:outline-none shadow-md"
+            aria-label="Go back to 3D matrix"
+          >
+            <ArrowLeft className="h-5 w-5 stroke-[1.5]" />
+          </button>
+        </div>
+
+        {/* Bottom Center Title & Click Prompt */}
+        <div className="absolute bottom-12 inset-x-0 mx-auto w-fit text-center pointer-events-none z-20 flex flex-col items-center gap-1">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-wide text-neutral-900 uppercase">
+            {project.title}
+          </h2>
+          <span className="font-display text-[9px] uppercase tracking-widest text-neutral-400 font-medium">
+            click image to see more
+          </span>
+        </div>
+
+      </section>
 
       {/* SOLID DETAILS PANEL (SLIDES UP FROM BOTTOM) */}
       <motion.div
