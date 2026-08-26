@@ -61,6 +61,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
 
   const targetCameraPosRef = useRef(new THREE.Vector3(0, 0, 11.2));
   const targetCameraLookRef = useRef(new THREE.Vector3(0, 0, 0));
+  const targetCameraUpRef = useRef(new THREE.Vector3(0, 1, 0));
   const currentCameraLookRef = useRef(new THREE.Vector3(0, 0, 0));
   const projectMeshesMapRef = useRef(new Map());
 
@@ -80,15 +81,21 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
         const localZ = new THREE.Vector3(0, 0, 1);
         localZ.applyQuaternion(worldQuat);
         
+        // Get the local Y-axis (up direction of the image texture) in world space
+        const localY = new THREE.Vector3(0, 1, 0);
+        localY.applyQuaternion(worldQuat);
+        
         // Place camera exactly 1.95 units in front of the rotated cube face
         const targetPos = worldPos.clone().add(localZ.multiplyScalar(1.95));
         
         targetCameraPosRef.current.copy(targetPos);
         targetCameraLookRef.current.copy(worldPos);
+        targetCameraUpRef.current.copy(localY);
       }
     } else {
       targetCameraPosRef.current.set(0, 0, targetCameraZRef.current);
       targetCameraLookRef.current.set(0, 0, 0);
+      targetCameraUpRef.current.set(0, 1, 0);
     }
   }, [selectedProject]);
 
@@ -283,17 +290,19 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
       cubeGroup.rotation.y += (targetRotationY - cubeGroup.rotation.y) * 0.15;
       cubeGroup.rotation.x += (targetRotationX - cubeGroup.rotation.x) * 0.15;
 
-      // Smoothly interpolate camera position and lookAt depending on state
+      // Smoothly interpolate camera position, lookAt, and up vector depending on state
       if (selectedProjectRef.current) {
         // Zoom camera in to face the selected project's cube
         camera.position.lerp(targetCameraPosRef.current, 0.05);
         currentCameraLookRef.current.lerp(targetCameraLookRef.current, 0.05);
+        camera.up.lerp(targetCameraUpRef.current, 0.05);
         camera.lookAt(currentCameraLookRef.current);
       } else {
         // Zoom camera back out to overview position centered on the origin
         const homePos = new THREE.Vector3(0, 0, targetCameraZRef.current);
         camera.position.lerp(homePos, 0.05);
         currentCameraLookRef.current.lerp(new THREE.Vector3(0, 0, 0), 0.05);
+        camera.up.lerp(new THREE.Vector3(0, 1, 0), 0.05);
         camera.lookAt(currentCameraLookRef.current);
       }
 
