@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { projectsData } from './Projects';
 
-export default function Hero({ onSelectProject }) {
+export default function Hero({ onSelectProject, setIs3DActive }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleNext = () => {
@@ -39,7 +39,7 @@ export default function Hero({ onSelectProject }) {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover pointer-events-none"
+              className="w-full h-full object-cover pointer-none"
             />
           ) : (
             <img
@@ -93,6 +93,36 @@ export default function Hero({ onSelectProject }) {
         </div>
 
       </div>
+
+      {/* Floating Hologram Widget - Spinning 3D Wireframe Cube */}
+      <button
+        onClick={() => setIs3DActive && setIs3DActive(true)}
+        className="absolute bottom-28 md:bottom-36 right-6 md:right-12 z-20 flex items-center gap-4 bg-transparent border-0 cursor-pointer group focus:outline-none pointer-events-auto"
+      >
+        {/* Label */}
+        <div className="text-right flex flex-col items-end gap-1 select-none">
+          <span className="font-display text-[9px] uppercase tracking-[0.25em] text-white/40 group-hover:text-white/80 transition-colors duration-300">
+            Interactive mode
+          </span>
+          <span className="font-display text-[10px] uppercase tracking-[0.2em] font-light text-white group-hover:opacity-70 transition-opacity duration-300 flex items-center gap-1.5">
+            Explore in 3D 
+            <span className="text-[10px] inline-block translate-y-[-1px] group-hover:translate-x-0.5 group-hover:translate-y-[-1.5px] transition-transform duration-300">↗</span>
+          </span>
+        </div>
+
+        {/* Spinning 3D Wireframe Cube Container */}
+        <div className="w-12 h-12 flex items-center justify-center relative bg-black/20 backdrop-blur-sm rounded-lg border border-white/5 group-hover:border-white/20 transition-all duration-300">
+          <div className="w-6 h-6 relative [transform-style:preserve-3d] animate-[spin-3d_12s_linear_infinite] pointer-events-none">
+            {/* Faces */}
+            <div className="absolute inset-0 border border-white/30 [transform:translateZ(12px)]" />
+            <div className="absolute inset-0 border border-white/30 [transform:translateZ(-12px)_rotateY(180deg)]" />
+            <div className="absolute inset-0 border border-white/30 [transform:translateX(12px)_rotateY(90deg)]" />
+            <div className="absolute inset-0 border border-white/30 [transform:translateX(-12px)_rotateY(-90deg)]" />
+            <div className="absolute inset-0 border border-white/30 [transform:translateY(-12px)_rotateX(90deg)]" />
+            <div className="absolute inset-0 border border-white/30 [transform:translateY(12px)_rotateX(-90deg)]" />
+          </div>
+        </div>
+      </button>
 
     </section>
   );

@@ -226,7 +226,7 @@ export default function App() {
               null
             ) : (
               <>
-                <Hero onSelectProject={navigateToProject} />
+                <Hero onSelectProject={navigateToProject} setIs3DActive={setIs3DActive} />
                 <AboutStatement />
                 <About />
                 <Projects onSelectProject={navigateToProject} />

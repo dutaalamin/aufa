@@ -126,3 +126,13 @@ a, a:any-link, a:link, a:visited {
   color: inherit !important;
   text-decoration: none !important;
 }
+
+/* 3D Wireframe Cube Keyframes */
+@keyframes spin-3d {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
