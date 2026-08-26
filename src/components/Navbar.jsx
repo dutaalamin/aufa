@@ -5,6 +5,7 @@ import { X, Search } from 'lucide-react';
 export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selectedProject, showPreloader }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [show3DHint, setShow3DHint] = useState(true);
 
   const navItems = [
     { label: 'About Us', id: 'about', hasSub: true },
@@ -16,6 +17,9 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > window.innerHeight * 0.85);
+      if (window.scrollY > 80) {
+        setShow3DHint(false);
+      }
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll);
@@ -73,16 +77,48 @@ export default function Navbar({ onNavigate, is3DActive, setIs3DActive, selected
 
           {/* 3D Mode Toggle Button - Centered */}
           {!selectedProject && !showPreloader && (
-            <button
-              onClick={() => setIs3DActive(!is3DActive)}
-              className={`absolute left-1/2 -translate-x-1/2 font-display text-[10px] sm:text-xs tracking-[0.25em] font-medium uppercase transition-all duration-500 cursor-pointer pointer-events-auto border-b py-0.5 ${
-                is3DActive
-                  ? 'border-neutral-900 text-neutral-900 hover:text-neutral-600 hover:border-neutral-600'
-                  : 'border-white/20 text-white/90 hover:text-white hover:border-white'
-              }`}
-            >
-              {is3DActive ? 'EXIT' : '3D'}
-            </button>
+            <div className="absolute left-1/2 -translate-x-1/2 z-30 flex flex-col items-center">
+              <button
+                onClick={() => {
+                  setIs3DActive(!is3DActive);
+                  setShow3DHint(false);
+                }}
+                className={`font-display text-[10px] sm:text-xs tracking-[0.25em] font-medium uppercase transition-all duration-500 cursor-pointer pointer-events-auto border-b py-0.5 flex items-center gap-1.5 ${
+                  is3DActive
+                    ? 'border-neutral-900 text-neutral-900 hover:text-neutral-600 hover:border-neutral-600'
+                    : 'border-white/20 text-white/90 hover:text-white hover:border-white'
+                }`}
+              >
+                {!is3DActive && (
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+                  </span>
+                )}
+                {is3DActive ? 'EXIT' : '3D'}
+              </button>
+
+              {/* Elegant floating tooltip hint on first load */}
+              {show3DHint && !is3DActive && (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ delay: 1.5, duration: 0.6, ease: 'easeOut' }}
+                  className="absolute top-full mt-4 w-52 bg-white text-black p-3.5 shadow-2xl text-center pointer-events-none border border-neutral-100/30 flex flex-col items-center gap-1"
+                >
+                  {/* Triangle pointing up to the 3D button */}
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[6px] border-b-white" />
+                  
+                  <span className="font-display text-[9px] uppercase tracking-[0.2em] font-semibold text-neutral-900 block leading-tight">
+                    Interactive Mode
+                  </span>
+                  <span className="font-sans text-[10px] text-neutral-500 font-light leading-normal block">
+                    Click here to explore our project archive in a 3D environment.
+                  </span>
+                </motion.div>
+              )}
+            </div>
           )}
 
           {/* Hamburger Menu Toggle - Top Right */}
